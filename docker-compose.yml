@@ -1,0 +1,20 @@
+version: '3.6'
+services:
+  iris:
+    build: 
+      context: .
+      dockerfile: dockerfile
+      args: 
+        - IRIS_PASSWORD=$IRIS_PASSWORD
+    command: --check-caps false
+    restart: always
+    env_file: 
+      - .env
+    ports: 
+      - 45460:1972
+      - 45461:52773
+      - 45462:53773
+    volumes:
+      - ./:/opt/irisapp
+
+

@@ -1,0 +1,5 @@
+2024-07-17 22:50:43.504: Writing to Log File /opt/irisapp/misc/HSROUTER/logs/Deployment-Log_0CD6DD17D0E9_IRIS_HSROUTER_exportPROD.PROD.log
+2024-07-17 22:50:43.743: Reading Deployment File /opt/irisapp/misc/exportPROD.PROD.txt
+2024-07-17 22:50:43.978: Getting Document EnsExportNotes
+2024-07-17 22:50:44.142: Not a deployment file. Missing EnsExportNotes.
+2024-07-17 22:50:44.350: Failed to complete deployment of /opt/irisapp/misc/exportPROD.PROD.txt

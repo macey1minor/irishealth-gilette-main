@@ -1,0 +1,5711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2017.2.2 (Build 865_3_19046U)" ts="2024-07-17 20:12:15">
+<Class name="Avaya.AvayaBoRule">
+<Description>
+</Description>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Ens.Rule.Definition</Super>
+<TimeChanged>64077,34613.355309</TimeChanged>
+<TimeCreated>63876,45855.027312</TimeCreated>
+
+<Parameter name="RuleAssistClass">
+<Default>EnsLib.MsgRouter.RuleAssist</Default>
+</Parameter>
+
+<XData name="RuleDefinition">
+<XMLNamespace>http://www.intersystems.com/rule</XMLNamespace>
+<Data><![CDATA[
+<ruleDefinition alias="" context="EnsLib.MsgRouter.RoutingEngine" production="">
+<ruleSet name="" effectiveBegin="" effectiveEnd="">
+<rule name="" disabled="false">
+<when condition="1">
+<send transform="" target="File.O.ArchiveInbound"></send>
+</when>
+</rule>
+<rule name="" disabled="false">
+<when condition="1">
+<send transform="Avaya.PhoneMessage" target="SQL.O.EdwAvaya"></send>
+</when>
+</rule>
+</ruleSet>
+</ruleDefinition>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="Bso.P.AcuityADT">
+<Description>
+</Description>
+<Super>Ens.Rule.Definition</Super>
+<TimeChanged>64243,56477.780088</TimeChanged>
+<TimeCreated>64243,56477.776803</TimeCreated>
+
+<Parameter name="RuleAssistClass">
+<Default>EnsLib.HL7.MsgRouter.RuleAssist</Default>
+</Parameter>
+
+<XData name="RuleDefinition">
+<XMLNamespace>http://www.intersystems.com/rule</XMLNamespace>
+<Data><![CDATA[
+<ruleDefinition alias="" context="EnsLib.HL7.MsgRouter.RoutingEngine" production="PROD.PROD">
+<ruleSet name="" effectiveBegin="" effectiveEnd="">
+<rule name="">
+</rule>
+</ruleSet>
+</ruleDefinition>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="CSPX.Dashboard.BarChart">
+<Description>
+SVG-based BarChart for Ensemble Dashboard.</Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Chart</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.513458</TimeCreated>
+
+<Parameter name="CHARTTYPE">
+<Default>BarChart</Default>
+</Parameter>
+</Class>
+
+
+<Class name="CSPX.Dashboard.Chart">
+<Description>
+Base class for SVG-based Charts for Ensemble Dashboard.</Description>
+<Abstract>1</Abstract>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Meter</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.543843</TimeCreated>
+
+<Parameter name="MINWIDTH">
+<Default>75</Default>
+</Parameter>
+
+<Parameter name="MINHEIGHT">
+<Default>75</Default>
+</Parameter>
+
+<Parameter name="CHARTTYPE">
+<Description>
+Overridden by subclasses to specify which JS object to use for chart.</Description>
+<Default>Chart</Default>
+</Parameter>
+
+<Property name="Points">
+<Description>
+Number of points to display</Description>
+<Type>%Integer</Type>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="XDimension">
+<Description><![CDATA[
+Specifies the source of X-series data:<br>
+By default, ("history") values are based on the elements within multi-dimensional Metric property;
+If set to "instances", then values are based on the set of Metric instances for the Metric property.<br>
+If set to "series", then values are based on the first value of each data series associated with the chart.<br>]]></Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="20"/>
+<Parameter name="VALUELIST" value=",instances,series,history"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="XGridLines">
+<Description>
+Number of vertical grid lines</Description>
+<Type>%Integer</Type>
+<InitialExpression>10</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="YGridLines">
+<Description>
+Number of horizontal grid lines</Description>
+<Type>%Integer</Type>
+<InitialExpression>8</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Style">
+<Description>
+Style to apply to chart (this is a string and is dependent on the chart type).
+Currently, the only available style is 'filled' for LineCharts.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="100"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="LabelSource">
+<Description>
+Optional source for labels (along x-axis for line and bar charts).
+This is the name of multi-dimensional metric property that contains
+a list of label names.
+If XDimensions is set to "instances", then this value is ignored.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="64"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="AutoScale">
+<Description><![CDATA[
+If true, then scale for this chart is adjusted automatically
+to match current data values. RangeUpper and RangeLower are ignored.<br>
+By default, AutoScale is false.<br>
+If RangeUpper and RangeLower are not defined, then this will be set to true as a convenience.]]></Description>
+<Type>%Boolean</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="IndependentScale">
+<Description>
+If false, then all series for this chart share the same y-axis scale.
+If true, then the range for each series is specified by each series.
+By default, IndependentScale is true.</Description>
+<Type>%Boolean</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="SeriesList">
+<Description>
+Optional collection of Series definitions for this chart.
+If Series are defined the Property defined for this chart is ignored.</Description>
+<Type>ChartSeries</Type>
+<Collection>list</Collection>
+<Parameter name="XMLNAME" value="Series"/>
+<Parameter name="XMLPROJECTION" value="ELEMENT"/>
+</Property>
+
+<Property name="XLabels">
+<Description>
+Internal holder for initial x labels for series.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="10000"/>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+
+<Method name="OnSVGStyle">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+.Chart-InnerPanel { 
+	fill: #000040;
+	stroke: gray;
+	stroke-width: 1px;
+	filter: url(#dropShadow);
+}
+
+.Chart-OuterPanel { 
+	fill: none;
+	stroke: none;
+	stroke-width: 1px;
+}
+
+.Chart-PlotArea { 
+	fill: black;
+	stroke: none;
+}
+
+.Chart-Axis { 
+	stroke: gray;
+	stroke-width: 1px;
+	stroke-linecap: round;
+	fill: none;
+}
+
+.Chart-GridLine { 
+	stroke: gray;
+	stroke-width: 0.5px;
+	opacity: 0.7;
+}
+
+.Chart-Series { 
+	stroke-width: 0.8px;
+	fill: none;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.Chart-Bars { 
+	fill: green;
+	stroke: gray;
+	stroke-width: 0.5px;
+	fill-opacity: 0.9; 
+}
+
+.Chart-yLabel { 
+	pointer-events: none;
+	font-size: 6;
+	fill: yellow;
+	stroke: none;
+}
+.Chart-xLabel { 
+	pointer-events: none;
+	font-size: 6;
+	fill: yellow;
+	stroke: none;
+}
+
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGHead">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[	Write "<script type='text/ecmascript' xlink:href='cspchart.js'/>",!
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGScript">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	// adjust xgridlines for barcharts
+	Set adjust = 0
+	If (..%ClassName(0) = "BarChart") {
+		Set adjust = 1
+	}
+	
+	// customize method name for subclasses
+	Write "function ",..%ClassName(0),"_setProperty(property,value,idx)",!
+	&js<
+{
+	switch (property) {
+	default:
+		return false;
+
+	case 'series':
+		// value is a ":" delimited set of points
+		if (this.seriesData[idx] == value) {
+			// make sure that scale gets updated even when last series does not change
+			if (this.autoScale && (this.seriesData.length == (idx+1))) {
+				// compute and set auto-scale (only for last series)
+				this.chart.updateScale();
+			}
+			return;
+		}
+		this.seriesData[idx] = value;
+
+		this.chart.setGridLines(this.xGridLines + #(adjust)#,this.yGridLines);
+		if (!this.autoScale) {
+			if (!this.independentScale) {
+				this.chart.setScale(this.rangeLower, this.rangeUpper, this.scaleFactor);
+			}
+			else {
+				this.chart.setScale(this.seriesRangeLower[idx], this.seriesRangeUpper[idx], this.seriesScaleFactor[idx], idx);
+			}
+		}
+
+		// find values to plot
+		var plotVals,sno,color;
+		if ('series' == this.xDimension) {
+			// build plotVals across each series
+			// ignore 'points'
+			sno = 0; // only one series
+			color = this.seriesColor[0];
+			plotVals = new Array();
+			for (var i = 0; i != this.seriesData.length; i++) { 
+				plotVals[i] = this.seriesData[i].split(":")[0];
+			}
+		}
+		else {
+			sno = idx;
+			color = this.seriesColor[idx];
+			plotVals = value.split(":");
+			if (this.points!=0 && !lessThanEq(plotVals.length,this.points)) {
+				// chop off extra points (from the beginning)
+				plotVals.splice(0, plotVals.length-this.points);
+			}
+		}
+		
+		// do not refresh for auto-scale mode
+		this.chart.setSeries(sno,plotVals,color,!this.autoScale);
+
+		if (this.autoScale && (this.seriesData.length == (idx+1))) {
+			// compute and set auto-scale (only for last series)
+			this.chart.updateScale();
+		}
+
+		// set level to most recent value (for one series charts)
+		if (plotVals.length == 1) {
+			this.level = plotVals[plotVals.length-1];
+		}
+		else {
+			this.level = 'N/A';
+		}
+
+		break;
+	case 'xlabels':
+		// value is a ":" delimited set of labels
+		var labels = value.split(':');
+		this.chart.setXLabels(labels);
+		break;
+	}
+	return true;
+}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGBody">
+<Description>
+Draw the body of this SVG meter</Description>
+<Implementation><![CDATA[	&html<<g id="#(..MeterId)#_chart" transform="translate(5,5)" />>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGInitJS">
+<Implementation><![CDATA[
+	// build the chart
+	&js<meter.chart = new #(..#CHARTTYPE)#(#(..MeterId)#,document.getElementById("#(..MeterId)#_chart"),#(..Width-10)#,#(..Height-25)#,10,15,25,10,'#(..Style)#');>
+	&js<meter.chart.showAxes();>
+	&js<meter.chart.meter = meter;>
+
+	// set up initial data for chart
+	&js<meter.seriesData = new Array();>
+	&js<meter.seriesColor = new Array();>
+	&js<meter.seriesLabel = new Array();>
+	&js<meter.seriesProperty = new Array();>
+	&js<meter.seriesInstance = new Array();>
+	&js<meter.seriesRangeUpper = new Array();>
+	&js<meter.seriesRangeLower = new Array();>
+	&js<meter.seriesScaleFactor = new Array();>
+	
+	For i = 1:1:..SeriesList.Count() {
+		Set sno = i-1
+		&js<meter.seriesData[#(sno)#] = '#(..SeriesList.GetAt(i).Data)#';>
+		&js<meter.seriesColor[#(sno)#] = '#(..SeriesList.GetAt(i).Color)#';>
+		&js<meter.seriesLabel[#(sno)#] = '#(..SeriesList.GetAt(i).Label)#';>
+		&js<meter.seriesProperty[#(sno)#] = '#(..SeriesList.GetAt(i).Property)#';>
+		&js<meter.seriesInstance[#(sno)#] = '#(..SeriesList.GetAt(i).Instance)#';>
+		&js<meter.seriesRangeUpper[#(sno)#] = #(+..SeriesList.GetAt(i).RangeUpper)#;>
+		&js<meter.seriesRangeLower[#(sno)#] = #(+..SeriesList.GetAt(i).RangeLower)#;>
+		&js<meter.seriesScaleFactor[#(sno)#] = #(+..SeriesList.GetAt(i).ScaleFactor)#;>
+	}
+
+	// test for labels
+	&js<if (meter.xLabels != '') {
+		var labels = meter.xLabels.split(':');
+
+		// chop off extra labels
+		//!!!if (greaterThanEq(labels.length,#(..SeriesList.Count())#)) {
+		//	labels.length = #(..SeriesList.Count())#;
+		//}
+		meter.chart.setXLabels(labels);
+	}
+	>
+
+	// test for independentScale
+	&js<if (meter.independentScale) {
+		meter.chart.independentScale = true;
+	}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="GenerateCode">
+<Description><![CDATA[
+Called by Dashboard class to generate code to
+create an instance of this object.
+The object instance is called <var>tMeter</var>.]]></Description>
+<FormalSpec>pCode:%CharacterStream,pLevel:%Integer=1</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	Do ##super(pCode)
+
+	Do:(..Style'="") pCode.WriteLine(" Set tMeter.Style=""" _ ..Style _ """")
+	Do:((..XDimension'="")&&(..XDimension'="history")) pCode.WriteLine(" Set tMeter.XDimension=""" _ ..XDimension _ """")
+	Do:(..XGridLines'="") pCode.WriteLine(" Set tMeter.XGridLines=" _ ..XGridLines)
+	Do:(..YGridLines'="") pCode.WriteLine(" Set tMeter.YGridLines=" _ ..YGridLines)
+	Do:(..LabelSource'="") pCode.WriteLine(" Set tMeter.LabelSource=""" _ ..LabelSource _ """")
+
+	If (+..IndependentScale) {
+		Do pCode.WriteLine(" Set tMeter.AutoScale=" _ +..AutoScale)
+	}
+	Else {
+		Do pCode.WriteLine(" Set tMeter.AutoScale=$S((+tMeter.RangeLower=0)&&(+tMeter.RangeUpper=0):1,1:" _ +..AutoScale _ ")")
+	}
+	Do pCode.WriteLine(" Set tMeter.IndependentScale=" _ +..IndependentScale)
+	
+	If (..SeriesList.Count() = 0) {
+		// if no series, use Property for this object
+		Do pCode.WriteLine(" Set tSeries = ##class(CSPX.Dashboard.ChartSeries).%New()")
+		Do pCode.WriteLine(" Set tSeries.Property=""" _ ..Property _ """")
+		Do pCode.WriteLine(" Set tSeries.Label=""" _ ..Label _ """")
+		Do pCode.WriteLine(" Set tSeries.RangeUpper=" _ +..RangeUpper)
+		Do pCode.WriteLine(" Set tSeries.RangeLower=" _ +..RangeLower)
+		Do pCode.WriteLine(" Set tSeries.ScaleFactor=" _ +..ScaleFactor)
+		Do pCode.WriteLine(" Do tMeter.SeriesList.Insert(tSeries)")
+	}
+	Else {
+		For i=1:1:..SeriesList.Count() {
+			Set tSeries = ..SeriesList.GetAt(i)
+			Do pCode.WriteLine(" Set tSeries = ##class(CSPX.Dashboard.ChartSeries).%New()")
+			Do:(tSeries.Property'="") pCode.WriteLine(" Set tSeries.Property=""" _ tSeries.Property _ """")
+			Do:(tSeries.Instance'="") pCode.WriteLine(" Set tSeries.Instance=""" _ tSeries.Instance _ """")
+			Do:(tSeries.Color'="") pCode.WriteLine(" Set tSeries.Color=""" _ tSeries.Color _ """")
+			Do pCode.WriteLine(" Set tSeries.RangeUpper=" _ +tSeries.RangeUpper)
+			Do pCode.WriteLine(" Set tSeries.RangeLower=" _ +tSeries.RangeLower)
+			Do pCode.WriteLine(" Set tSeries.ScaleFactor=" _ +tSeries.ScaleFactor)
+
+			Do:(tSeries.Color'="") pCode.WriteLine(" Set tSeries.Color=""" _ tSeries.Color _ """")
+			If (tSeries.Label'="") {
+				Do pCode.WriteLine(" Set tSeries.Label=""" _ tSeries.Label _ """")
+			}
+			Else {
+				Do pCode.WriteLine(" Set tSeries.Label=""" _ tSeries.Property _ """")
+			}
+
+			Do pCode.WriteLine(" Do tMeter.SeriesList.Insert(tSeries)")
+		}
+
+		// set Property for this object (just to pick up Units etc.)
+		Do pCode.WriteLine(" Set tMeter.Property=""" _ ..SeriesList.GetAt(i).Property _ """")
+	}
+
+	// Points
+	If (..Points'="") {
+		Do pCode.WriteLine(" Set tMeter.Points=" _ ..Points)
+	}
+	Else {
+		// get default
+		Do pCode.WriteLine(" Set tMeter.Points = tMeter.GetPoints()")
+	}
+	
+	Quit $$$OK
+]]></Implementation>
+</Method>
+
+<Method name="GetPoints">
+<Description>
+Returns the number of points used for the metric associated with this meter.
+This is relevant for multidimensional metrics and is based on the
+AUTOHISTORY parameter (if defined).</Description>
+<ReturnType>%String</ReturnType>
+<Implementation><![CDATA[
+	Set $ZT="Trap", tPoints=""
+	If ((..Metric '= "") && (..Property '= "")) {
+		Set tMetric = $P(..Metric,"(",1)
+
+		// convert Metric to class name
+		Set tClass = $$$ConfigClassName(tMetric)
+		Set tPoints = +$zobjclassmethod(tClass,..Property_"Points")
+	}
+Done
+	Quit tPoints
+Trap
+	Set $ZT=""
+	Goto Done
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.ChartSeries">
+<Description>
+Defines a series for a Dashboard chart. This class is for internal use only.</Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>%RegisteredObject,%XML.Adaptor</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59591,41802.325997</TimeCreated>
+<Inheritance>right</Inheritance>
+
+<Property name="Property">
+<Description>
+Metric property providing the metric for this series.
+The Metric class is defined by the chart.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="128"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Instance">
+<Description>
+(Optional) Metric instance name providing the data for this series.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="128"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Label">
+<Description><![CDATA[
+Label displayed for this series; If not specified, <var>Property</var>
+is used.]]></Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="128"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Color">
+<Description>
+SVG Color used to display this series.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="50"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Data">
+<Description>
+Holder for initial data for series.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="10000"/>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+
+<Property name="RangeUpper">
+<Description>
+Upper range value for this series. Only used if
+the chart has SharedScale set to false.</Description>
+<Type>%Float</Type>
+<InitialExpression>100</InitialExpression>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="RangeLower">
+<Description>
+Lower range value for this series. Only used if
+the chart has SharedScale set to false.</Description>
+<Type>%Float</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="ScaleFactor">
+<Description>
+Scale factor for this series. Only used if
+the chart has SharedScale set to false.</Description>
+<Type>%Float</Type>
+<InitialExpression>1</InitialExpression>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+</Class>
+
+
+<Class name="CSPX.Dashboard.FuelGauge">
+<Description>
+SVG-based Fuel Gauge meter for Ensemble Dashboard.</Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Meter</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.577019</TimeCreated>
+
+<Method name="OnSVGStyle">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+	.FuelGauge-body {
+		fill: url(#FuelGauge-bodyGrad);
+		stroke: black;
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		filter: url(#dropShadow);
+	}
+
+	.FuelGauge-body2 {
+		fill: url(#FuelGauge-bodyGrad);
+		stroke: black;
+		stroke-width: 1px;
+		stroke-linejoin: round;
+	}
+
+	.FuelGauge-tick {
+		fill: none;
+		stroke: black;
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+	}
+
+	.FuelGauge-needle {
+		fill: none;
+		stroke: red;
+		stroke-width: 2px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+	}
+
+	.FuelGauge-shadow {
+		fill: none;
+		stroke: black;
+		stroke-width: 1.8px;
+		opacity: 0.1;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+	}
+
+	.FuelGauge-fuelLampON {
+		fill: url(#FuelGauge-lampGrad);
+		stroke: #909090;
+		stroke-width: 0.4;
+	}
+
+	.FuelGauge-fuelLampOFF {
+		fill: none;
+		stroke: #909090;
+		stroke-width: 0.4;
+	}
+
+	.FuelGauge-levelTextBox {
+		fill: url(#Speedometer-bodyGrad2);
+		stroke: black;
+		stroke-width: 0.8;
+	}
+
+	.FuelGauge-levelText {
+		pointer-events: none;
+		font-size: 8;
+		fill: black;
+		font-weight: bold;
+		stroke: none;
+		font-family: courier-new;
+	}
+
+	.FuelGauge-levelTextNeg {
+		pointer-events: none;
+		font-size: 8;
+		fill: red;
+		font-weight: bold;
+		stroke: none;
+		font-family: courier-new;
+	}
+
+	.FuelGauge-logoText {
+		pointer-events: none;
+		font-size: 5;
+		fill: gray;
+		stroke: none;
+		font-family: tahoma verdana;
+	}
+
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGDefs">
+<Description>
+Draw the defs section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+<linearGradient id="FuelGauge-bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#EEEEEE" />
+<stop offset="50%" style="stop-color:darkgray" />
+<stop offset="90%" style="stop-color:gray" />
+</linearGradient>
+
+<linearGradient id="FuelGauge-lampGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:darkred" />
+<stop offset="30%" style="stop-color:#FF0000" />
+<stop offset="70%" style="stop-color:#FF0000" />
+<stop offset="100%" style="stop-color:darkred" />
+</linearGradient>
+
+>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGScript">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&js<
+	
+function FuelGauge_setProperty(property,value)
+{
+	switch (property) {
+	default:
+		return false;
+	case 'level':
+		if (value == this.level) {
+			return;
+		}
+	
+		if (this.timerId) {
+			window.clearTimeout(this.timerId);
+			this.timerId = null;
+		}
+
+		// update level of gauge
+		this.level = value;
+		
+		var id = this.meterId;
+
+		// indicator lamps
+		var lowLamp = false;
+		var highLamp = false;
+		if (lessThanEq(this.level,this.thresholdLower)) {
+			lowLamp = true;
+		}
+		if (greaterThanEq(this.level,this.thresholdUpper)) {
+			highLamp = true;
+		}
+
+		// indicator lamps
+		var lamp = document.getElementById(id + "_lowFuelLamp");
+		lamp.setAttribute("class",lowLamp ? "FuelGauge-fuelLampON" : "FuelGauge-fuelLampOFF");
+
+		var lamp = document.getElementById(id + "_highFuelLamp");
+		lamp.setAttribute("class",highLamp ? "FuelGauge-fuelLampON" : "FuelGauge-fuelLampOFF");
+		
+		// update text
+		var lvl = this.level * this.scaleFactor;
+		var text = document.getElementById(id + "_levelText");
+		text.setAttribute("class",greaterThanEq(lvl,0) ? "FuelGauge-levelText" : "FuelGauge-levelTextNeg");
+
+		if (greaterThanEq(lvl,100000) || lessThanEq(lvl,-100000)) {
+			lvl = "\043\043\043\043\043";
+		}
+		setTextNode(id + "_levelText",lvl);
+
+		if (null == this.currLevel) {
+			this.currLevel = 0;
+		}
+		// find intermediate needle position
+		var speed = (this.level*1 - this.currLevel*1) / 4;
+		this.currLevel = this.currLevel*1 + speed;
+		this.setProperty('updateLevel',0);
+		break;
+
+	case 'updateLevel':
+		// update internal level of meter
+		this.timerId = null;
+
+		var range = this.rangeUpper - this.rangeLower;
+		// round off if close enough
+		if (lessThanEq(Math.abs(this.level*1 - this.currLevel*1),(range/280))) {
+			this.currLevel = this.level*1;
+		}
+
+		// calculate needle angle from level
+		// display range is -10 to 10
+		
+		var angle = 0;
+		var range = this.rangeUpper - this.rangeLower;
+		if (range != 0) {
+			angle = (((this.currLevel - this.rangeLower) / range) * 20) - 10;
+		}
+		
+		// pin needle against edges
+		if (lessThanEq(angle,-10)) {
+			angle = -10;
+		}
+		if (greaterThanEq(angle,10)) {
+			angle = 10;
+		}
+
+		// move needle
+		var id = this.meterId;
+
+		var needle = document.getElementById(id + "_needle");
+		needle.setAttribute("transform", "rotate(" + angle + ",50,166)");
+
+		var shadow = document.getElementById(id + "_shadow");
+		shadow.setAttribute("transform", "rotate(" + (angle+1) + ",50,166)");
+
+		// if not done, move needle again
+		if (this.level*1 != this.currLevel*1) {
+			var speed = (this.level*1 - this.currLevel*1) / 4;
+			this.currLevel = this.currLevel*1 + speed;
+			this.timerId = window.setTimeout("FuelGauge_updateNeedle('" + id + "')",50);
+		}
+		break;
+	}
+
+	return true;
+}
+
+function FuelGauge_updateNeedle(meterId)
+{
+	if (meterList[meterId]) {
+		meterList[meterId].setProperty('updateLevel',0);
+	}
+}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGBody">
+<Description>
+Draw the body of this SVG meter</Description>
+<Implementation><![CDATA[
+	Set id = ..MeterId
+	
+	// HCR056 centers the FuelGauge based on the Width
+	Set w = +..Width Set:w<100 w = 100
+	Set move = (w\2)-50
+	&html<
+		<g transform="translate(#(move)#,0)">
+	>
+	
+	&html<
+		<path class="FuelGauge-body" d="M 20,20 A 50 25 0 0 1 80 20 L 70,80 L 30,80 z" />
+
+		<circle id="#(id)#_lowFuelLamp" class="FuelGauge-fuelLampOFF" cx="24.5" cy="22" r="1.8" />
+		<circle id="#(id)#_highFuelLamp" class="FuelGauge-fuelLampOFF" cx="75.5" cy="22" r="1.8" />
+
+		<line class="FuelGauge-tick" x1="25" y1="25" x2="26" y2="30" />
+		<line class="FuelGauge-tick" x1="37" y1="23" x2="37.4" y2="26" />
+		<line class="FuelGauge-tick" x1="50" y1="22" x2="50" y2="27" />
+		<line class="FuelGauge-tick" x1="63" y1="23" x2="62.6" y2="26" />
+		<line class="FuelGauge-tick" x1="75" y1="25" x2="74" y2="30" />
+
+		<text class="FuelGauge-logoText" x="50" y="43" text-anchor="middle">Ensemble</text>
+
+		<rect class="FuelGauge-levelTextBox" x="33" y="49" width="34" height="8" rx="1" />
+		<text id="#(id)#_levelText" class="FuelGauge-levelText" x="66" y="56" text-anchor="end">#(..Level)#</text>
+
+		<line id="#(id)#_shadow" class="FuelGauge-shadow" x1="50" y1="28" x2="50" y2="60" transform="rotate(1,50,166)" />
+		<line id="#(id)#_needle" class="FuelGauge-needle" x1="50" y1="25" x2="50" y2="60" transform="rotate(0,50,166)" />
+		
+		<path class="FuelGauge-body2" d="M 27,62 A 50 25 0 0 1 73 62 L 70,80 L 30,80 z" />
+	>
+	
+	&html<
+		</g>
+	>
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.Grid">
+<Description>
+Grid Meter for Ensemble Dashboard.
+The Grid Meter displays a set of data as a simple table.</Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Meter</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.543843</TimeCreated>
+
+<Parameter name="MINWIDTH">
+<Default>75</Default>
+</Parameter>
+
+<Parameter name="MINHEIGHT">
+<Default>75</Default>
+</Parameter>
+
+<Property name="Columns">
+<Description>
+Data specification for grid columns.</Description>
+<Type>GridDimension</Type>
+<Parameter name="XMLNAME" value="Columns"/>
+<Parameter name="XMLPROJECTION" value="ELEMENT"/>
+</Property>
+
+<Property name="Rows">
+<Description>
+Data specification for grid rows.</Description>
+<Type>GridDimension</Type>
+<Parameter name="XMLNAME" value="Rows"/>
+<Parameter name="XMLPROJECTION" value="ELEMENT"/>
+</Property>
+
+<Property name="RowHeight">
+<Description>
+Display height (in logical units) of each row in the grid.</Description>
+<Type>%Integer</Type>
+<InitialExpression>10</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="LabelHeight">
+<Description>
+Display height (in logical units) of the upper labels in the grid.</Description>
+<Type>%Integer</Type>
+<InitialExpression>10</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="LabelWidth">
+<Description>
+Display width (in logical units) of the side labels in the grid.</Description>
+<Type>%Integer</Type>
+<InitialExpression>25</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="MaxRows">
+<Description>
+Maximum number of rows to display in the grid.</Description>
+<Type>%Integer</Type>
+<InitialExpression>40</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="MaxColumns">
+<Description>
+Maximum number of columns to display in the grid.</Description>
+<Type>%Integer</Type>
+<InitialExpression>40</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="CellStyle">
+<Description>
+Default CSS Style applied to grid cells. E.g. "fill: blue;"</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="100"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="LabelStyle">
+<Description>
+CSS Style applied to grid labels. E.g. "fill: blue;"</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="100"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="LabelSource">
+<Description>
+Not supported at this time.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="64"/>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+
+<Property name="Unsupported">
+<Description>
+Internal flag for unsupport row/columns combinations.</Description>
+<Type>%Boolean</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+
+<Property name="ColLabels">
+<Description>
+Internal holder for initial column labels.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="10000"/>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+
+<Property name="RowLabels">
+<Description>
+Internal holder for initial row labels.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="10000"/>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+
+<Method name="OnSVGStyle">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+.Grid-OuterPanel {
+	fill: #000040;
+	stroke: darkgray;
+	stroke-width: 1;
+	filter: url(#dropShadow);
+}
+
+.Grid-InnerPanel {
+	fill: #EEEEFF;
+	stroke: none;
+}
+
+.Grid-CellLine {
+	fill: none;
+	stroke: gray;
+	stroke-width: 0.33;
+	opacity: 1.0;
+}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGHead">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	// include js file
+	Write "<script type='text/ecmascript' xlink:href='svggrid.js'/>",!
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGScript">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	
+	&js<
+function Grid_setProperty(property,value,idx)	
+{
+	switch (property) {
+	default:
+		return false;
+
+	case 'series':
+		// value is a ":" delimited set of points
+		if (this.seriesData[idx] == value) {
+			return;
+		}
+		this.seriesData[idx] = value;
+
+		// find values to display
+		var plotVals
+		plotVals = value.split(":");
+		this.grid.setData(idx,plotVals);
+		break;
+
+	case 'xlabels':
+		// value is a ":" delimited set of labels
+		var labels = value.split(':');
+		
+		// apply to either rows or columns
+		if ('instances' == this.columns) {
+			this.grid.setColLabels(labels);
+		}
+		else {
+			this.grid.setRowLabels(labels);
+		}
+		break;
+	}
+	return true;
+}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGBody">
+<Description>
+Draw the body of this SVG meter</Description>
+<Implementation><![CDATA[	&html<<g id="#(..MeterId)#_grid" transform="translate(5,5)" />>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGInitJS">
+<Implementation><![CDATA[
+	// find source of data: col, rows, or default
+	Set tList = ""
+	Set flow = ""
+	Set tColType = $S($IsObject(..Columns):..Columns.Source,1:"")
+	Set tRowType = $S($IsObject(..Rows):..Rows.Source,1:"")
+	Set tColReverse = $S($IsObject(..Columns):..Columns.Reverse,1:0)
+	Set tRowReverse = $S($IsObject(..Rows):..Rows.Reverse,1:0)
+	Set tColAgg = $S($IsObject(..Columns):..Columns.Aggregate,1:"")
+	Set tRowAgg = $S($IsObject(..Rows):..Rows.Aggregate,1:"")
+	Set tColAggLbl = $S($IsObject(..Columns):..Columns.AggregateLabel,1:"")
+	Set tRowAggLbl = $S($IsObject(..Rows):..Rows.AggregateLabel,1:"")
+
+	If (tColType = "series") {
+		Set tList = ..Columns.SeriesList
+		Set flow = "vertical"
+	}
+	ElseIf (tRowType = "series") {
+		Set tList = ..Rows.SeriesList
+		Set flow = "horizontal"
+	}
+	ElseIf (tColType = "instances") {
+		Set tList = ..Rows.SeriesList
+		Set flow = "vertical"
+	}
+	ElseIf (tRowType = "instances") {
+		Set tList = ..Columns.SeriesList
+		Set flow = "horizontal"
+	}
+
+	// build the grid
+	&js<meter.grid = new Grid(meter,#(..MeterId)#,document.getElementById("#(..MeterId)#_grid"),#(..Width-10)#,#(..Height-25)#,#(..LabelWidth)#,#(..LabelHeight)#,#(..MaxRows)#,#(..MaxColumns)#,'#(..LabelStyle)#','#(..CellStyle)#',#($Case(+..Unsupported,1:"true",:"false"))#,'#(flow)#',#($Case(tColReverse,1:"true",:"false"))#,#($Case(tRowReverse,1:"true",:"false"))#,'#(tColAgg)#','#(tRowAgg)#','#(tColAggLbl)#','#(tRowAggLbl)#');>
+
+	// set up initial data for grid
+	&js<meter.seriesData = new Array();>
+	&js<meter.seriesProperty = new Array();>
+	&js<meter.seriesInstance = new Array();>
+	&js<meter.seriesLabel = new Array();>
+
+	If $IsObject(tList) {
+		For i = 1:1:tList.Count() {
+			Set tItem = tList.GetAt(i)
+			&js<meter.seriesProperty[#(i-1)#] = '#(tItem.Property)#';>
+			&js<meter.seriesInstance[#(i-1)#] = '#(tItem.Instance)#';>
+			&js<meter.seriesLabel[#(i-1)#] = '#(tItem.Label)#';>
+
+			// special processing for instance v. history
+			If (((tColType = "instances")&&(tRowType = "history")) ||
+				((tRowType = "instances")&&(tColType = "history")) ){
+				For n = 1:1:$L(tItem.Data,"^") {
+					&js<meter.seriesData[#(n-1)#] = '#($P(tItem.Data,"^",n))#';>
+				}
+			}
+			Else {
+				&js<meter.seriesData[#(i-1)#] = '#(tItem.Data)#';>
+			}
+		}
+	}
+
+	// test for labels
+	&js<
+	if (meter.colLabels != '') {
+		var labels = meter.colLabels.split(':');
+		meter.grid.setColLabels(labels);
+	}
+	if (meter.rowLabels != '') {
+		var labels = meter.rowLabels.split(':');
+		meter.grid.setRowLabels(labels);
+	}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="GenerateCode">
+<Description><![CDATA[
+Called by Dashboard class to generate code to
+create an instance of this object.
+The object instance is called <var>tMeter</var>.]]></Description>
+<FormalSpec>pCode:%CharacterStream,pLevel:%Integer=1</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	Do ##super(pCode)
+
+	Do:(..LabelSource'="") pCode.WriteLine(" Set tMeter.LabelSource=""" _ ..LabelSource _ """")
+	Do:(..CellStyle'="") pCode.WriteLine(" Set tMeter.CellStyle=""" _ ..CellStyle _ """")
+	Do:(..LabelStyle'="") pCode.WriteLine(" Set tMeter.LabelStyle=""" _ ..LabelStyle _ """")
+	Do:(..RowHeight'="") pCode.WriteLine(" Set tMeter.RowHeight=""" _ ..RowHeight _ """")
+	Do:(..MaxRows'="") pCode.WriteLine(" Set tMeter.MaxRows=""" _ ..MaxRows _ """")
+	Do:(..MaxColumns'="") pCode.WriteLine(" Set tMeter.MaxColumns=""" _ ..MaxColumns _ """")
+	Do:(..LabelHeight'="") pCode.WriteLine(" Set tMeter.LabelHeight=""" _ ..LabelHeight _ """")
+	Do:(..LabelWidth'="") pCode.WriteLine(" Set tMeter.LabelWidth=""" _ ..LabelWidth _ """")
+
+	// dimension definitions
+	If '$IsObject(..Rows) {
+		// create default rows object
+		Do pCode.WriteLine(" Set tMeter.Rows = ##class(CSPX.Dashboard.GridDimension).%New() // default")
+		Do pCode.WriteLine(" Set tMeter.Rows.Source = ""series""")
+		Do pCode.WriteLine(" Set tSeries = ##class(CSPX.Dashboard.GridSeries).%New()")
+		Do pCode.WriteLine(" Set tSeries.Property=""" _ ..Property _ """")
+		Do pCode.WriteLine(" Set tSeries.Label=""" _ ..Property _ """")
+		Do pCode.WriteLine(" Do tMeter.Rows.SeriesList.Insert(tSeries)")
+	}
+	Else {
+		Set:..Rows.Source=$C(0) ..Rows.Source=""
+		Do pCode.WriteLine(" Set tMeter.Rows = ##class(CSPX.Dashboard.GridDimension).%New()")
+		Do pCode.WriteLine(" Set tMeter.Rows.Source = """ _ ..Rows.Source _ """")
+		Do pCode.WriteLine(" Set tMeter.Rows.Aggregate = """ _ ..Rows.Aggregate _ """")
+		Do pCode.WriteLine(" Set tMeter.Rows.AggregateLabel = """ _ ..Rows.AggregateLabel _ """")
+		Do pCode.WriteLine(" Set tMeter.Rows.Size = " _ +..Rows.Size)
+		Do pCode.WriteLine(" Set tMeter.Rows.Reverse = " _ +..Rows.Reverse)
+
+		Set count = ..Rows.SeriesList.Count()
+		If (count = 0) {
+			// if no series, use Property for this object
+			Do pCode.WriteLine(" Set tSeries = ##class(CSPX.Dashboard.GridSeries).%New()")
+			Do pCode.WriteLine(" Set tSeries.Property=""" _ ..Property _ """")
+			Do pCode.WriteLine(" Set tSeries.Label=""" _ ..Label _ """")
+			Do pCode.WriteLine(" Do tMeter.Rows.SeriesList.Insert(tSeries)")
+		}
+		Else {
+			If ((..Rows.Source = "history") || (..Rows.Source = "instances")) {
+				// we only care about the first series in this case
+				Set count = 1
+			}
+			
+			For i=1:1:count {
+				Set tSeries = ..Rows.SeriesList.GetAt(i)
+				Do pCode.WriteLine(" Set tSeries = ##class(CSPX.Dashboard.GridSeries).%New()")
+				Do:(tSeries.Property'="") pCode.WriteLine(" Set tSeries.Property=""" _ tSeries.Property _ """")
+				Do:(tSeries.Instance'="") pCode.WriteLine(" Set tSeries.Instance=""" _ tSeries.Instance _ """")
+				If (tSeries.Label'="") {
+					Do pCode.WriteLine(" Set tSeries.Label=""" _ tSeries.Label _ """")
+				}
+				Else {
+					Do pCode.WriteLine(" Set tSeries.Label=""" _ tSeries.Property _ """")
+				}
+				Do pCode.WriteLine(" Do tMeter.Rows.SeriesList.Insert(tSeries)")
+			}
+		}
+	}
+
+	If '$IsObject(..Columns) {
+		// create default columns object
+		Do pCode.WriteLine(" Set tMeter.Columns = ##class(CSPX.Dashboard.GridDimension).%New() // default")
+		Do pCode.WriteLine(" Set tMeter.Columns.Source = ""series""")
+		Do pCode.WriteLine(" Set tSeries = ##class(CSPX.Dashboard.GridSeries).%New()")
+		Do pCode.WriteLine(" Set tSeries.Property=""" _ ..Property _ """")
+		Do pCode.WriteLine(" Set tSeries.Label=""" _ ..Property _ """")
+		Do pCode.WriteLine(" Do tMeter.Columns.SeriesList.Insert(tSeries)")
+	}
+	Else {
+		Set:..Columns.Source=$C(0) ..Columns.Source=""
+		Do pCode.WriteLine(" Set tMeter.Columns = ##class(CSPX.Dashboard.GridDimension).%New()")
+		Do pCode.WriteLine(" Set tMeter.Columns.Source = """ _ ..Columns.Source _ """")
+		Do pCode.WriteLine(" Set tMeter.Columns.Aggregate = """ _ ..Columns.Aggregate _ """")
+		Do pCode.WriteLine(" Set tMeter.Columns.AggregateLabel = """ _ ..Columns.AggregateLabel _ """")
+		Do pCode.WriteLine(" Set tMeter.Columns.Size = " _ +..Columns.Size)
+		Do pCode.WriteLine(" Set tMeter.Columns.Reverse = " _ +..Columns.Reverse)
+
+		Set count = ..Columns.SeriesList.Count()
+		If (count = 0) {
+			// if no series, use Property for this object
+			Do pCode.WriteLine(" Set tSeries = ##class(CSPX.Dashboard.GridSeries).%New()")
+			Do pCode.WriteLine(" Set tSeries.Property=""" _ ..Property _ """")
+			Do pCode.WriteLine(" Set tSeries.Label=""" _ ..Label _ """")
+			Do pCode.WriteLine(" Do tMeter.Columns.SeriesList.Insert(tSeries)")
+		}
+		Else {
+			If ((..Columns.Source = "history") || (..Columns.Source = "instances")) {
+				// we only care about the first series in this case
+				Set count = 1
+			}
+			For i=1:1:count {
+				Set tSeries = ..Columns.SeriesList.GetAt(i)
+				Do pCode.WriteLine(" Set tSeries = ##class(CSPX.Dashboard.GridSeries).%New()")
+				Do:(tSeries.Property'="") pCode.WriteLine(" Set tSeries.Property=""" _ tSeries.Property _ """")
+				Do:(tSeries.Instance'="") pCode.WriteLine(" Set tSeries.Instance=""" _ tSeries.Instance _ """")
+				If (tSeries.Label'="") {
+					Do pCode.WriteLine(" Set tSeries.Label=""" _ tSeries.Label _ """")
+				}
+				Else {
+					Do pCode.WriteLine(" Set tSeries.Label=""" _ tSeries.Property _ """")
+				}
+				Do pCode.WriteLine(" Do tMeter.Columns.SeriesList.Insert(tSeries)")
+			}
+		}
+	}
+
+	Quit $$$OK
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.GridDimension">
+<Description>
+Defines dimension specification for a Dashboard grid. This class is for internal use only.</Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>%RegisteredObject,%XML.Adaptor</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59591,41802.325997</TimeCreated>
+<Inheritance>right</Inheritance>
+
+<Property name="Source">
+<Description>
+Source of data for this this dimension: this can be
+"series", "instances","history" or "".</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="20"/>
+<Parameter name="VALUELIST" value=",series,instances,history"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Size">
+<Description>
+Optional: number of cells to display for data along this dimension.</Description>
+<Type>%Integer</Type>
+<Parameter name="MINVAL" value="0"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Reverse">
+<Description>
+Optional: Show data for this dimension in reverse order</Description>
+<Type>%Boolean</Type>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Aggregate">
+<Description>
+Optional: Name of aggregate function to apply along this dimension.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="50"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="AggregateLabel">
+<Description>
+Optional: Label to apply for aggregate function row or column.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="50"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="SeriesList">
+<Description>
+Optional collection of Series definitions for this grid dimension.
+If Series are defined the Property defined for this chart is ignored.</Description>
+<Type>GridSeries</Type>
+<Collection>list</Collection>
+<Parameter name="XMLNAME" value="Series"/>
+<Parameter name="XMLPROJECTION" value="ELEMENT"/>
+</Property>
+</Class>
+
+
+<Class name="CSPX.Dashboard.GridSeries">
+<Description>
+Defines a data series for a Dashboard grid This class is for internal use only.</Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>%RegisteredObject,%XML.Adaptor</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59591,41802.325997</TimeCreated>
+<Inheritance>right</Inheritance>
+
+<Property name="Property">
+<Description>
+Metric property providing the metric for this series.
+The Metric class is defined by the grid.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="128"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Instance">
+<Description>
+(Optional) Metric instance name providing the data for this series.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="128"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Label">
+<Description><![CDATA[
+Label displayed for this series; If not specified, <var>Property</var>
+is used.]]></Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="128"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Data">
+<Description>
+(Internal) Holder for initial data for series.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="10000"/>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+</Class>
+
+
+<Class name="CSPX.Dashboard.Group">
+<Description>
+Base class for Groups within an Ensemble Dashboard.</Description>
+<ClassType/>
+<CompileAfter>CSPX.Dashboard.BarChart</CompileAfter>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Meter</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.594375</TimeCreated>
+
+<Parameter name="SHOWLABEL">
+<Default>0</Default>
+</Parameter>
+
+<Parameter name="MINWIDTH">
+<Default>0</Default>
+</Parameter>
+
+<Parameter name="MINHEIGHT">
+<Default>0</Default>
+</Parameter>
+
+<Parameter name="WIDTH">
+<Default>0</Default>
+</Parameter>
+
+<Parameter name="HEIGHT">
+<Default>0</Default>
+</Parameter>
+
+<Property name="Meters">
+<Description>
+Meters belonging to this group</Description>
+<Type>Meter</Type>
+<Collection>list</Collection>
+<Parameter name="XMLNAME" value="Meters"/>
+<Parameter name="XMLPROJECTION" value="ELEMENT"/>
+<Parameter name="XMLTYPECONSTRAINT" value="CHOICE"/>
+</Property>
+
+<Property name="Orientation">
+<Description>
+Direction in which to layout meters within this group.</Description>
+<Type>%String</Type>
+<InitialExpression>"horizontal"</InitialExpression>
+<Parameter name="MAXLEN" value="10"/>
+<Parameter name="VALUELIST" value=",horizontal,vertical"/>
+<Parameter name="XMLPROJECTION" value="attribute"/>
+</Property>
+
+<Method name="InsertMeter">
+<Description>
+Insert a meter into this group</Description>
+<FormalSpec>pMeter:Meter</FormalSpec>
+<Implementation><![CDATA[	Do ..Meters.Insert(pMeter)
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGStyle">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+.Group-OuterBorder { 
+	fill: none;
+	stroke: none;
+	stroke-width: 1px;
+}
+
+.Group-Title { 
+	pointer-events: none;
+	font-size: 6;
+	fill: yellow;
+	stroke: none;
+}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGScript">
+<Description>
+Draw the script section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&js<
+function Group_setProperty(property,value)
+{
+	return false;
+}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGInitJS">
+<Implementation><![CDATA[
+	// group methods
+	&js<
+meter.children = new Array();
+meter.arrangeMeters = Group_arrangeMeters;
+meter.alignMeters = Group_alignMeters;
+meter.addMeter = Group_addMeter;
+>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGBody">
+<Description>
+Draw the body of this SVG meter</Description>
+</Method>
+
+<Method name="GenerateCode">
+<FormalSpec>pCode:%CharacterStream,pLevel:%Integer=1</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	Set tVar = "tGroup" _ pLevel
+	Do %code.WriteLine(" Set "_tVar_" = tMeter")
+	Do:(..Label'="") pCode.WriteLine(" Set "_tVar_".Label=""" _ ..Label _ """")
+	Do:(..Metric'="") pCode.WriteLine(" Set "_tVar_".Metric=""" _ ..Metric _ """")
+	Do:(..Property'="") pCode.WriteLine(" Set "_tVar_".Property=""" _ ..Property _ """")
+	Do:(..Orientation'="") pCode.WriteLine(" Set "_tVar_".Orientation=""" _ ..Orientation _ """")
+	Do:(..Width'="") pCode.WriteLine(" Set "_tVar_".Width=" _ ..Width)
+	Do:(..Height'="") pCode.WriteLine(" Set "_tVar_".Height=" _ ..Height)
+
+	#; Generate code for each Meter within this group
+	For i=1:1:..Meters.Count() {
+		Set tMeter = ..Meters.GetAt(i)
+		Do %code.WriteLine(" // " _ tMeter.%ClassName(1))
+		Do %code.WriteLine(" Set tMeter = ##class(" _ tMeter.%ClassName(1) _ ").%New()")
+		Do %code.WriteLine(" Do "_tVar_".InsertMeter(tMeter)")
+		
+		// apply default metric for members of this group
+		If (tMeter.Metric = "") {
+			Set tMeter.Metric = ..Metric
+		}
+
+		// default value of label		
+		If (tMeter.Label = "") {
+			Set tMeter.Label = tMeter.Property
+		}
+
+		Set tSC = tMeter.GenerateCode(%code, pLevel + 1)
+		If $$$ISERR(tSC) Quit
+	}
+
+	Quit $$$OK
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.Icon">
+<Description><![CDATA[
+SVG-based Icon meter for Ensemble Dashboard.<br>
+The Icon meter displays a user defined icon. The icon is defined 
+using SVG; You can define a normal icon and, in addition, you 
+can define alternate images to display when the meter level is above or below
+its specified threshold value]]></Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Meter</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.764148</TimeCreated>
+
+<Parameter name="MINHEIGHT">
+<Default>25</Default>
+</Parameter>
+
+<Parameter name="MINWIDTH">
+<Default>50</Default>
+</Parameter>
+
+<Parameter name="WIDTH">
+<Default>100</Default>
+</Parameter>
+
+<Parameter name="HEIGHT">
+<Default>100</Default>
+</Parameter>
+
+<Parameter name="SHOWLABEL">
+<Default>0</Default>
+</Parameter>
+
+<Property name="ImageNormal">
+<Description>
+SVG (xml fragment) that defines the symbol to display for this meter
+in its normal state (that is, when its value is between the high and
+low threshold values).</Description>
+<Type>%XML.String</Type>
+<Parameter name="MAXLEN" value="20000"/>
+<Parameter name="XMLPROJECTION" value="ELEMENT"/>
+</Property>
+
+<Property name="ImageLow">
+<Description>
+SVG (xml fragment) that defines the symbol to display for this meter
+in its low state (that is, when its value is below its low threshold value).</Description>
+<Type>%XML.String</Type>
+<Parameter name="MAXLEN" value="20000"/>
+<Parameter name="XMLPROJECTION" value="ELEMENT"/>
+</Property>
+
+<Property name="ImageHigh">
+<Description>
+SVG (xml fragment) that defines the symbol to display for this meter
+in its high state (that is, when its value is above its threshold value).</Description>
+<Type>%XML.String</Type>
+<Parameter name="MAXLEN" value="20000"/>
+<Parameter name="XMLPROJECTION" value="ELEMENT"/>
+</Property>
+
+<Method name="OnSVGStyle">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+
+	.Icon-body {
+		fill: black;
+		stroke: gray;
+		stroke-width: 1px;
+		filter: url(#dropShadow);
+	}
+
+	.Icon-symbolHigh {
+		fill: url(#Icon-highGrad);
+		stroke: black;
+		stroke-width: 1px;
+	}
+
+	.Icon-symbolLow {
+		fill: url(#Icon-lowGrad);
+		stroke: black;
+		stroke-width: 1px;
+	}
+
+	.Icon-symbolOFF {
+		fill: black;
+		stroke: gray;
+		stroke-width: 1px;
+	}
+
+	.Icon-text {
+		pointer-events: none;
+		font-size: 8;
+		fill: yellow;
+		stroke: none;
+	}
+
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGScript">
+<Description>
+Draw the script section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&js<
+	
+function Icon_setProperty(property,value)
+{
+	switch (property) {
+	default:
+		return false;
+	case 'level':
+		if (value == this.level) {
+			return;
+		}
+	
+		// update level of gauge
+		this.level = value;
+		
+		var id = this.meterId;
+	
+		// thresholds depend on direction of range...
+		var tlower, tupper;
+		if (greaterThanEq(this.rangeUpper,this.rangeLower)) {
+			tlower = this.thresholdLower;
+			tupper = this.thresholdUpper;
+		}
+		else {
+			tlower = this.thresholdUpper;
+			tupper = this.thresholdLower;
+		}
+
+		// calculate if symbol should be on
+		var symbolState = 'OFF';
+
+		if (lessThanEq(this.level,tlower)) {
+			// below low thresh:
+			symbolState = 'Low';
+		}
+		else if (greaterThanEq(this.level,tupper)) {
+			// above high thresh:
+			symbolState = 'High';
+		}
+		
+		// update symbol
+		var symbol = document.getElementById(id + "_symbol");
+		// !!!symbol.setAttribute("class", "Icon-symbol" + symbolState);
+
+		// find correct image to show
+		var image = document.getElementById(id + "_image");
+		var imageLow = document.getElementById(id + "_imageLow");
+		var imageHigh = document.getElementById(id + "_imageHigh");
+		switch(symbolState) {
+		case 'Low':
+			if (imageLow) {
+				imageLow.setAttribute("style","");
+				image.setAttribute("style","display: none;");
+			}
+			else {
+				image.setAttribute("style","");
+			}
+			if (imageHigh) {imageHigh.setAttribute("style","display: none;");}
+			break;
+		case 'High':
+			if (imageHigh) {
+				imageHigh.setAttribute("style","");
+				image.setAttribute("style","display: none;");
+			}
+			else {
+				image.setAttribute("style","");
+			}
+			if (imageLow) {imageLow.setAttribute("style","display: none;");}
+			break
+		default:
+			image.setAttribute("style","");
+			if (imageLow) {imageLow.setAttribute("style","display: none;");}
+			if (imageHigh) {imageHigh.setAttribute("style","display: none;");}
+			break;
+		}
+
+		break;
+	}
+
+	return true;
+}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGDefs">
+<Description>
+Draw the defs section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+
+<linearGradient id="Icon-highGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:darkgreen" />
+<stop offset="30%" style="stop-color:#00FF00" />
+<stop offset="70%" style="stop-color:#00FF00" />
+<stop offset="100%" style="stop-color:darkgreen" />
+</linearGradient>
+
+<linearGradient id="Icon-lowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:darkred" />
+<stop offset="30%" style="stop-color:red" />
+<stop offset="70%" style="stop-color:red" />
+<stop offset="100%" style="stop-color:darkred" />
+</linearGradient>
+
+>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGBody">
+<Description>
+Draw the body of this SVG meter</Description>
+<Implementation><![CDATA[
+	Set off = (..Width / 2) - 5
+	Set id = ..MeterId
+
+	// backing light	
+	&html<
+		<rect class="Icon-body" x="#((..Width/2)-off)#" y="5" width="#(..Width-10)#" height="#(..Height-10)#" rx="2" />
+		<rect id="#(id)#_symbol" class="Icon-symbolOFF" x="#((..Width/2)-off)#" y="5" width="#(..Width-10)#" height="#(..Height-10)#" rx="5" />
+		<text id="#(id)#_symbolText" class="Icon-text" x="#(..Width/2)#" y="#(..Height-8)#" text-anchor="middle">#(..Label)#</text>
+	>
+	
+	// draw user symbols
+	&html<<svg id="#(id)#_image" x="#((..Width/2)-off)#" y="5" width="#(..Width-10)#" height="#(..Height-10)#" viewBox="-50 -50 100 100">>
+	Write ..ImageNormal	
+	&html<</svg>>
+
+	If (..ImageLow'="") {
+		&html<<svg style="display:none;" id="#(id)#_imageLow" x="#((..Width/2)-off)#" y="5" width="#(..Width-10)#" height="#(..Height-10)#" viewBox="-50 -50 100 100">>
+		Write ..ImageLow	
+		&html<</svg>>
+	}
+
+	If (..ImageHigh'="") {
+		&html<<svg style="display:none;" id="#(id)#_imageHigh" x="#((..Width/2)-off)#" y="5" width="#(..Width-10)#" height="#(..Height-10)#" viewBox="-50 -50 100 100">>
+		Write ..ImageHigh	
+		&html<</svg>>
+	}
+]]></Implementation>
+</Method>
+
+<Method name="GenerateCode">
+<Description><![CDATA[
+Called by Dashboard class to generate code to
+create an instance of this object.
+The object instance is called <var>tMeter</var>.]]></Description>
+<FormalSpec>pCode:%CharacterStream,pLevel:%Integer=1</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	Do ##super(pCode)
+	Do:..ImageNormal'="" pCode.WriteLine(" Set tMeter.ImageNormal=" _ $zu(144,1,..ImageNormal))
+	Do:..ImageLow'="" pCode.WriteLine(" Set tMeter.ImageLow=" _ $zu(144,1,..ImageLow))
+	Do:..ImageHigh'="" pCode.WriteLine(" Set tMeter.ImageHigh=" _ $zu(144,1,..ImageHigh))
+	Quit $$$OK
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.IndicatorLamp">
+<Description>
+SVG-based Traffic Light meter for Ensemble Dashboard.</Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Meter</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.619045</TimeCreated>
+
+<Parameter name="MINHEIGHT">
+<Default>25</Default>
+</Parameter>
+
+<Parameter name="MINWIDTH">
+<Default>50</Default>
+</Parameter>
+
+<Parameter name="WIDTH">
+<Default>75</Default>
+</Parameter>
+
+<Parameter name="HEIGHT">
+<Default>25</Default>
+</Parameter>
+
+<Parameter name="SHOWLABEL">
+<Default>0</Default>
+</Parameter>
+
+<Method name="OnSVGStyle">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+
+	.IndicatorLamp-body {
+		fill: black;
+		stroke: black;
+		stroke-width: 1px;
+	}
+
+	.IndicatorLamp-lampHigh {
+		fill: url(#IndicatorLamp-highGrad);
+		stroke: black;
+		stroke-width: 1px;
+	}
+
+	.IndicatorLamp-lampLow {
+		fill: url(#IndicatorLamp-lowGrad);
+		stroke: black;
+		stroke-width: 1px;
+	}
+
+	.IndicatorLamp-lampOFF {
+		fill: gray;
+		stroke: black;
+		opacity: 0.5;
+		stroke-width: 1px;
+	}
+
+	.IndicatorLamp-textOFF {
+		pointer-events: none;
+		font-size: 8;
+		fill: black;
+		stroke: none;
+		font-weight: bold;
+	}
+
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGScript">
+<Description>
+Draw the script section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&js<
+	
+function IndicatorLamp_setProperty(property,value)
+{
+	switch (property) {
+	default:
+		return false;
+	case 'level':
+		if (value == this.level) {
+			return;
+		}
+	
+		// update level of gauge
+		this.level = value;
+		
+		var id = this.meterId;
+	
+		// thresholds depend on direction of range...
+		var tlower, tupper;
+		if (greaterThanEq(this.rangeUpper,this.rangeLower)) {
+			tlower = this.thresholdLower;
+			tupper = this.thresholdUpper;
+		}
+		else {
+			tlower = this.thresholdUpper;
+			tupper = this.thresholdLower;
+		}
+
+		// calculate if lamp should be on
+		var lampState = 'OFF';
+
+		if (lessThanEq(this.level,tlower)) {
+			// below low thresh:
+			lampState = 'Low';
+		}
+		else if (greaterThanEq(this.level,tupper)) {
+			// above high thresh:
+			lampState = 'High';
+		}
+		
+		// update lamp
+		var lamp = document.getElementById(id + "_lamp");
+		lamp.setAttribute("class", "IndicatorLamp-lamp" + lampState);
+		break;
+	}
+
+	return true;
+}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGDefs">
+<Description>
+Draw the defs section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+
+<linearGradient id="IndicatorLamp-highGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:darkgreen" />
+<stop offset="30%" style="stop-color:#00FF00" />
+<stop offset="70%" style="stop-color:#00FF00" />
+<stop offset="100%" style="stop-color:darkgreen" />
+</linearGradient>
+
+<linearGradient id="IndicatorLamp-lowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:darkred" />
+<stop offset="30%" style="stop-color:red" />
+<stop offset="70%" style="stop-color:red" />
+<stop offset="100%" style="stop-color:darkred" />
+</linearGradient>
+
+>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGBody">
+<Description>
+Draw the body of this SVG meter</Description>
+<Implementation><![CDATA[
+	Set off = (..Width / 2) - 5
+	Set id = ..MeterId
+	
+	&html<
+		<rect class="IndicatorLamp-body" x="#((..Width/2)-off)#" y="5" width="#(..Width-10)#" height="16" rx="2" />
+		<rect id="#(id)#_lamp" class="IndicatorLamp-lampOFF" x="#((..Width/2)-off)#" y="5" width="#(..Width-10)#" height="16" rx="5" />
+		<text id="#(id)#_lampText" class="IndicatorLamp-textOFF" x="#(..Width/2)#" y="16" text-anchor="middle">#(..Label)#</text>
+	>
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.Label">
+<Description><![CDATA[
+Label meter for Ensemble Dashboard.<br>
+A label does nothing but display a label within a Dashboard.]]></Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Meter</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.764148</TimeCreated>
+
+<Parameter name="MINHEIGHT">
+<Default>25</Default>
+</Parameter>
+
+<Parameter name="MINWIDTH">
+<Default>50</Default>
+</Parameter>
+
+<Parameter name="HEIGHT">
+<Default>25</Default>
+</Parameter>
+
+<Parameter name="WIDTH">
+<Default>75</Default>
+</Parameter>
+
+<Method name="OnSVGScript">
+<Description>
+Draw the script section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&js<
+	
+function Label_setProperty(property,value)
+{
+	return false;
+}
+	>
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.LightBar">
+<Description>
+SVG-based LightBar meter for Ensemble Dashboard.</Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Meter</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.635149</TimeCreated>
+
+<Parameter name="MINWIDTH">
+<Default>50</Default>
+</Parameter>
+
+<Parameter name="WIDTH">
+<Default>50</Default>
+</Parameter>
+
+<Method name="OnSVGStyle">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+	.LightBar-body {
+		fill: url(#LightBar-bodyGrad);
+		stroke: black;
+		stroke-width: 1px;
+		filter: url(#dropShadow);
+	}
+
+	.LightBar-redLampON {
+		fill: url(#LightBar-redGrad);
+		stroke: black;
+		stroke-width: 1px;
+	}
+	.LightBar-redLampOFF {
+		fill: #200000;
+		stroke: black;
+		stroke-width: 1px;
+	}
+
+	.LightBar-yellowLampON {
+		fill: url(#LightBar-yellowGrad);
+		stroke: black;
+		stroke-width: 1px;
+	}
+	.LightBar-yellowLampOFF {
+		fill: #202000;
+		stroke: black;
+		stroke-width: 1px;
+	}
+	.LightBar-greenLampON {
+		fill: url(#LightBar-greenGrad);
+		stroke: black;
+		stroke-width: 1px;
+	}
+	.LightBar-greenLampOFF {
+		fill: #002000;
+		stroke: black;
+		stroke-width: 1px;
+	}
+	
+	.LightBar-lampON {
+		fill: url(#LightBar-redGrad);
+		stroke: #505050;
+		stroke-width: 0.4;
+	}
+
+	.LightBar-lampOFF {
+		fill: none;
+		stroke: #505050;
+		stroke-width: 0.4;
+	}
+
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGScript">
+<Description>
+Draw the script section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&js<
+	
+function LightBar_setProperty(property,value)
+{
+	switch (property) {
+	default:
+		return false;
+	case 'level':
+		if ((value == this.level)) {
+			return;
+		}
+
+		// update level of gauge
+		this.level = value;
+		var id = this.meterId;
+		
+		// calculate number of bars to show
+		// display range is 0 to 10
+		
+		var bars = 0;
+		var fraction = 0;
+		var range = this.rangeUpper - this.rangeLower;
+		if (range != 0) {
+			bars = (((this.level - this.rangeLower) / range) * 10);
+			fraction = bars - Math.floor(bars);
+		}
+		
+		// clip
+		if (lessThanEq(bars,0)) {
+			bars = 0;
+		}
+		if (greaterThanEq(bars,10)) {
+			bars = 10;
+		}
+
+		// turn on lamps
+		for (var n = 0; n != 10; n++) {
+			var off = greaterThanEq(n,bars);
+			var lamp = document.getElementById(id + "_lamp_" + n);
+			if (lessThanEq(n,6)) {
+				lamp.setAttribute("class",(off) ? "LightBar-greenLampOFF" : "LightBar-greenLampON");
+			}
+			else if (n == 7) {
+				lamp.setAttribute("class",(off) ? "LightBar-yellowLampOFF" : "LightBar-yellowLampON");
+			}
+			else {
+				lamp.setAttribute("class",(off) ? "LightBar-redLampOFF" : "LightBar-redLampON");
+			}
+
+			if ((n == Math.floor(bars)) && (fraction != 0)) {
+				lamp.setAttribute("fill-opacity", (0.0 + (fraction / 1)));
+			}
+			else {
+				lamp.setAttribute("fill-opacity", 1.0);
+			}
+		}
+		
+		// indicator lamps
+		var lowLamp = false;
+		var highLamp = false;
+		if (lessThanEq(this.level,this.thresholdLower)) {
+			lowLamp = true;
+		}
+		if (greaterThanEq(this.level,this.thresholdUpper)) {
+			highLamp = true;
+		}
+		
+		// indicator lamps
+		var lamp = document.getElementById(id + "_lowLamp");
+		lamp.setAttribute("class",lowLamp ? "LightBar-lampON" : "LightBar-lampOFF");
+
+		var lamp = document.getElementById(id + "_highLamp");
+		lamp.setAttribute("class",highLamp ? "LightBar-lampON" : "LightBar-lampOFF");
+		break;
+	}
+	return true;
+}
+
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGDefs">
+<Description>
+Draw the defs section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+<linearGradient id="LightBar-bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="50%" style="stop-color:darkgray" />
+<stop offset="90%" style="stop-color:gray" />
+</linearGradient>
+
+<linearGradient id="LightBar-redGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:darkred" />
+<stop offset="30%" style="stop-color:#FF0000" />
+<stop offset="70%" style="stop-color:#FF0000" />
+<stop offset="100%" style="stop-color:darkred" />
+</linearGradient>
+
+<linearGradient id="LightBar-yellowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#808000" />
+<stop offset="30%" style="stop-color:#FFFF00" />
+<stop offset="70%" style="stop-color:#FFFF00" />
+<stop offset="100%" style="stop-color:#808000" />
+</linearGradient>
+
+<linearGradient id="LightBar-greenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:darkgreen" />
+<stop offset="60%" style="stop-color:#00FF00" />
+<stop offset="100%" style="stop-color:darkgreen" />
+</linearGradient>
+>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGBody">
+<Description>
+Draw the body of this SVG meter</Description>
+<Implementation><![CDATA[
+	Set id = ..MeterId
+	
+	&html<
+		<rect class="LightBar-body" x="#((..Width/2)-15)#" y="8" width="30" height="74" rx="5" />
+	>
+	
+	// underlying-bars
+	Set y = 11
+	For n = 9:-1:0 {
+		Set color = $Case(n,9:"red",8:"red",7:"yellow",:"green")
+		&html<<rect class="LightBar-#(color)#LampOFF" x="#((..Width/2)-7)#" y="#(y)#" width="14" height="5" rx="2" />>
+		Set y = y + 7
+	}
+
+	// bars
+	Set y = 11
+	For n = 9:-1:0 {
+		Set color = $Case(n,9:"red",8:"red",7:"yellow",:"green")
+		&html<<rect id="#(id)#_lamp_#(n)#" class="LightBar-#(color)#LampOFF" x="#((..Width/2)-7)#" y="#(y)#" width="14" height="5" rx="2" />>
+		Set y = y + 7
+	}
+
+	// indicators
+	&html<
+		<circle id="#(id)#_highLamp" class="LightBar-lampOFF" cx="#((..Width/2)-11)#" cy="13" r="2" />
+		<circle id="#(id)#_lowLamp" class="LightBar-lampOFF" cx="#((..Width/2)-11)#" cy="76.5" r="2" />
+	>
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.LineChart">
+<Description>
+SVG-based LineChart for Ensemble Dashboard.</Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Chart</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.647151</TimeCreated>
+
+<Parameter name="CHARTTYPE">
+<Default>LineChart</Default>
+</Parameter>
+</Class>
+
+
+<Class name="CSPX.Dashboard.Meter">
+<Description>
+Base class for SVG-based dashboard meters.</Description>
+<ClassType/>
+<IncludeCode>Ensemble</IncludeCode>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>%RegisteredObject,%XML.Adaptor</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.662327</TimeCreated>
+<Inheritance>right</Inheritance>
+
+<Parameter name="DOMAIN">
+<Description>
+Use our own domain for localization</Description>
+<Default>Ensemble</Default>
+</Parameter>
+
+<Parameter name="MINWIDTH">
+<Description>
+Minimum width, in logical units, of this meter.</Description>
+<Type>INTEGER</Type>
+<Default>100</Default>
+</Parameter>
+
+<Parameter name="MINHEIGHT">
+<Description>
+Minimum height, in logical units, of this meter.</Description>
+<Type>INTEGER</Type>
+<Default>100</Default>
+</Parameter>
+
+<Parameter name="WIDTH">
+<Description>
+Default width, in logical units, of this meter.</Description>
+<Type>INTEGER</Type>
+<Default>100</Default>
+</Parameter>
+
+<Parameter name="HEIGHT">
+<Description>
+Default height, in logical units, of this meter.</Description>
+<Type>INTEGER</Type>
+<Default>100</Default>
+</Parameter>
+
+<Parameter name="SHOWLABEL">
+<Description>
+Should this meter display the standard label</Description>
+<Type>BOOLEAN</Type>
+<Default>1</Default>
+</Parameter>
+
+<Property name="Width">
+<Description>
+Width, in logical units, of this meter.
+Note, this value is determined by the WIDTH class parameter.</Description>
+<Type>%Integer</Type>
+<InitialExpression>..#WIDTH</InitialExpression>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Height">
+<Description>
+Height, in logical units, of this meter.
+Note, this value is determined by the HEIGHT class parameter.</Description>
+<Type>%Integer</Type>
+<InitialExpression>..#HEIGHT</InitialExpression>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Level">
+<Description>
+Represents the initial level of the meter.</Description>
+<Type>%Float</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+
+<Property name="RangeLower">
+<Description>
+Represents the lower value of the meter range.</Description>
+<Type>%Float</Type>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="RangeUpper">
+<Description>
+Represents the upper value of the meter range.</Description>
+<Type>%Float</Type>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="ThresholdLower">
+<Description>
+Represents the lower threshold level for the meter.</Description>
+<Type>%Float</Type>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="ThresholdUpper">
+<Description>
+Represents the upper threshold level for the meter.</Description>
+<Type>%Float</Type>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="ScaleFactor">
+<Description>
+For numeric displays, the meter will multiply the current
+level by this amount before displaying it.</Description>
+<Type>%Float</Type>
+<InitialExpression>1</InitialExpression>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Label">
+<Description>
+The label displayed for the meter.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="250"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Description">
+<Description>
+Description for the meter.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="250"/>
+<Parameter name="XMLPROJECTION" value="ELEMENT"/>
+</Property>
+
+<Property name="Metric">
+<Description>
+Business Metric service (config name) providing the metric for this meter.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="128"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Property">
+<Description>
+Metric property providing the metric for this meter.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="128"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Method">
+<Description>
+Optional method, within the Dashboard class, used to transform
+the Property value</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="128"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="XPos">
+<Description>
+X Position, in logical units, of this meter.</Description>
+<Type>%Integer</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+
+<Property name="YPos">
+<Description>
+Y Position, in logical units, of this meter.</Description>
+<Type>%Integer</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+
+<Property name="ShowLabel">
+<Description>
+Indicates that the label should be displayed for this meter.</Description>
+<Type>%Boolean</Type>
+<InitialExpression>..#SHOWLABEL</InitialExpression>
+<ReadOnly>1</ReadOnly>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+
+<Property name="IsRunning">
+<Description>
+Indicates that the production providing the metrics for this meter is running.</Description>
+<Type>%Boolean</Type>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+
+<Property name="MeterId">
+<Description>
+Id used when meter is placed on client page</Description>
+<Type>%Integer</Type>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+
+<Property name="PropertyCount">
+<Description>
+Number of properties displayed by this meter</Description>
+<Type>%Integer</Type>
+<InitialExpression>1</InitialExpression>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+
+<Property name="Link">
+<Description>
+If present, the link (URL) used to drill into details for this meter.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="128"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="DefList">
+<Description>
+Contains list of properties using default values.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="200"/>
+<Parameter name="XMLPROJECTION" value="NONE"/>
+</Property>
+
+<Method name="OnSVGHead">
+<Description>
+Called before any scripts, styles, defs are written
+Usually used to pick up include files</Description>
+<ClassMethod>1</ClassMethod>
+</Method>
+
+<Method name="OnSVGStyle">
+<Description>
+Draw the style section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+</Method>
+
+<Method name="OnSVGScript">
+<Description>
+Draw the script section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+</Method>
+
+<Method name="OnSVGDefs">
+<Description>
+Draw the defs section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+</Method>
+
+<Method name="OnSVGInitJS">
+<Description>
+Generate JavaScript to initialize client-side
+meter object</Description>
+</Method>
+
+<Method name="OnSVGBody">
+<Description><![CDATA[
+Draw the body of this SVG meter
+<var>id</var> is a run-time assigned id value that must
+be used to prefix any DOM identifiers within this meter]]></Description>
+</Method>
+
+<Method name="GenerateCode">
+<Description><![CDATA[
+Called by Dashboard class to generate code to
+create an instace of this object.
+The object instance is called <var>tMeter</var>.
+The generated code will be called in the context of the OnPage method of the CSPX.Dashboard.Page class.]]></Description>
+<FormalSpec>pCode:%CharacterStream,pLevel:%Integer=1</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	Do:(..Label'="") pCode.WriteLine(" Set tMeter.Label=""" _ ..Label _ """")
+	Do:(..Metric'="") pCode.WriteLine(" Set tMeter.Metric=""" _ ..Metric _ """")
+	Do:(..Property'="") pCode.WriteLine(" Set tMeter.Property=""" _ ..Property _ """")
+	Do:(..Width'="") pCode.WriteLine(" Set tMeter.Width=" _ ..Width)
+	Do:(..Height'="") pCode.WriteLine(" Set tMeter.Height=" _ ..Height)
+	Do:(..ScaleFactor'="") pCode.WriteLine(" Set tMeter.ScaleFactor=" _ ..ScaleFactor)
+	Do:(..Method'="") pCode.WriteLine(" Set tMeter.Method=""" _ ..Method _ """")
+
+	// these values get defaults from the metric class
+	// if not defined by the meter (use abbreviations)
+	Set tDefList = ""
+
+	If (..Link="") {
+		Do pCode.WriteLine(" Set tMeter.Link=##class(%CSP.Page).Link(tMeter.GetDefault(""Link""))")
+		Set tDefList = tDefList _ $S(tDefList="":"",1:"|") _ "L"
+	}
+	Else {
+		Do pCode.WriteLine(" Set tMeter.Link=##class(%CSP.Page).Link(""" _ ..Link _ """)")
+	}
+	If (..RangeLower="") {
+		Do pCode.WriteLine(" Set tMeter.RangeLower=tMeter.GetDefault(""RangeLower"")")
+		Set tDefList = tDefList _ $S(tDefList="":"",1:"|") _ "RL"
+	}
+	Else {
+		Do pCode.WriteLine(" Set tMeter.RangeLower=""" _ ..RangeLower _ """")
+	}
+	If (..RangeUpper="") {
+		Do pCode.WriteLine(" Set tMeter.RangeUpper=tMeter.GetDefault(""RangeUpper"")")
+		Set tDefList = tDefList _ $S(tDefList="":"",1:"|") _ "RU"
+	}
+	Else {
+		Do pCode.WriteLine(" Set tMeter.RangeUpper=""" _ ..RangeUpper _ """")
+	}
+
+	If (..ThresholdLower="") {
+		Do pCode.WriteLine(" Set tMeter.ThresholdLower=tMeter.GetDefault(""ThresholdLower"")")
+		Set tDefList = tDefList _ $S(tDefList="":"",1:"|") _ "TL"
+	}
+	Else {
+		Do pCode.WriteLine(" Set tMeter.ThresholdLower=""" _ ..ThresholdLower _ """")
+	}
+
+	If (..ThresholdUpper="") {
+		Do pCode.WriteLine(" Set tMeter.ThresholdUpper=tMeter.GetDefault(""ThresholdUpper"")")
+		Set tDefList = tDefList _ $S(tDefList="":"",1:"|") _ "TU"
+	}
+	Else {
+		Do pCode.WriteLine(" Set tMeter.ThresholdUpper=""" _ ..ThresholdUpper _ """")
+	}
+
+	If (..Description="") {
+		// no default for description
+	}
+	Else {
+		Do pCode.WriteLine(" Set tMeter.Description=""" _ ..Description _ """")
+	}
+
+	Do pCode.WriteLine(" Set tMeter.DefList=""" _ tDefList _ """")
+
+	Quit $$$OK
+]]></Implementation>
+</Method>
+
+<Method name="SetClientProperties">
+<CodeMode>objectgenerator</CodeMode>
+<Implementation><![CDATA[
+	If (%class.Name = "CSPX.Dashboard.Meter") {
+		Quit $$$OK
+	}
+	
+	For i = 1:1:%compiledclass.Properties.Count() {
+		Set prop = %compiledclass.Properties.GetAt(i)
+		Set type = $$$NormalizeClassname(prop.Type)
+		
+		If (prop.Collection = "") {
+		
+			// create client name
+			Set cname = prop.Name
+			If cname?1"%%".e Continue // Skip %% properties!
+			If (cname = "Metric") {
+				// metric value
+				Do %code.WriteLine(" Write ""meter.metric = '"" _ $ZCVT(##class(CSPX.Dashboard.Renderer).EvalMetric(..Metric),""O"",""JS"") _ ""';"",!")
+			}
+			Else {
+				Set $E(cname,1,1) = $ZCVT($E(cname,1,1),"L")
+				Do %code.Write(" Write ""meter." _ cname _ " = ")
+				If ((type = "Ens.DataType.Metric") ||
+					(type = "%Library.Boolean") || 
+					(type = "%Library.Integer") || 
+					(type = "%Library.Float")) {
+						
+					Do %code.WriteLine(""",+.." _ prop.Name _ ","";"",!")
+				}
+				ElseIf (type = "CSPX.Dashboard.GridDimension") {
+					// special handling for Grids
+					Do %code.WriteLine(""",$S($IsObject(.." _ prop.Name _ "):""'""_.."_prop.Name_".Source_""'"",1:""null""),"";"",!")
+				}
+				Else {
+					Do %code.WriteLine("'"",$ZCVT(.." _ prop.Name _ ",""O"",""JS""),""';"",!")
+				}
+			}
+		}
+	}
+
+	// other properties
+	Do %code.WriteLine(" Write ""meter.units = '"" _ $ZCVT(..GetUnits(),""O"",""JS"") _ ""';"",!")
+
+	Quit $$$OK
+]]></Implementation>
+</Method>
+
+<Method name="GetUnits">
+<Description>
+Returns the units used for the metric associated with this meter.
+Units are a user-defined string specified (by the UNITS parameter) within
+the BusinessMetric class.</Description>
+<ReturnType>%String</ReturnType>
+<Implementation><![CDATA[
+	Set $ZT = "Trap"
+	Set tUnits = ""
+	If ((..Metric '= "") && (..Property '= "")) {
+		// convert Metric to class name
+		Set tClass = $$$ConfigClassName(..Metric)
+		Set tUnits = $zobjclassmethod(tClass,..Property_"Units")
+	}
+Done
+	Quit tUnits
+Trap
+	Set $ZT = ""
+	Goto Done
+]]></Implementation>
+</Method>
+
+<Method name="GetDefault">
+<Description>
+Returns the default value (from the Metric class) for the given property
+(e.g., RangeLower, etc).</Description>
+<FormalSpec>pName:%String</FormalSpec>
+<ReturnType>%String</ReturnType>
+<Implementation><![CDATA[
+	Set $ZT="Trap", tValue=""
+	Do {
+		If ((..Metric '= "") && (..Property '= "")) {
+			// convert Metric to class name
+			Set tMetric = $P(..Metric,"(",1) // pull off metric name
+			Set tClass = $G($$$ConfigClassName(tMetric))  Quit:""=tClass
+			Set tValue = $zobjclassmethod(tClass,..Property_pName)
+		}
+	} While(0)
+Done
+	Quit tValue
+Trap
+	Set $ZT=""
+	Goto Done
+]]></Implementation>
+</Method>
+
+<Method name="WidthSet">
+<FormalSpec>%val:%Integer</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	// don't allow width below minimum
+	Set i%Width = $S(%val>..#MINWIDTH:%val,1:..#MINWIDTH)
+	Quit $$$OK
+]]></Implementation>
+</Method>
+
+<Method name="HeightSet">
+<FormalSpec>%val:%Integer</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	// don't allow height below minimum
+	Set i%Height = $S(%val>..#MINHEIGHT:%val,1:..#MINHEIGHT)
+	Quit $$$OK
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.Odometer">
+<Description>
+SVG-based Odometer for Ensemble Dashboard.</Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Meter</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.687907</TimeCreated>
+
+<Parameter name="MINHEIGHT">
+<Default>25</Default>
+</Parameter>
+
+<Parameter name="MINWIDTH">
+<Default>50</Default>
+</Parameter>
+
+<Parameter name="HEIGHT">
+<Default>25</Default>
+</Parameter>
+
+<Parameter name="WIDTH">
+<Default>75</Default>
+</Parameter>
+
+<Method name="OnSVGStyle">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+	.Odometer-body {
+		fill: url(#Odometer-bodyGrad);
+		stroke: black;
+		stroke-width: 1px;
+	}
+
+	.Odometer-levelTextBox {
+		fill: url(#Odometer-bodyGrad2);
+		stroke: black;
+		stroke-width: 0.8;
+	}
+
+	.Odometer-levelText {
+		pointer-events: none;
+		font-size: 8;
+		fill: black;
+		font-weight: bold;
+		stroke: none;
+		font-family: courier-new;
+	}
+	.Odometer-levelTextNeg {
+		pointer-events: none;
+		font-size: 8;
+		fill: red;
+		font-weight: bold;
+		stroke: none;
+		font-family: courier-new;
+	}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGDefs">
+<Description>
+Draw the defs section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+<linearGradient id="Odometer-bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#EEEEEE" />
+<stop offset="50%" style="stop-color:darkgray" />
+<stop offset="90%" style="stop-color:gray" />
+</linearGradient>
+
+<linearGradient id="Odometer-bodyGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:gray" />
+<stop offset="20%" style="stop-color:darkgray" />
+<stop offset="90%" style="stop-color:#EEEEEE" />
+</linearGradient>
+>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGScript">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&js<
+	
+function Odometer_setProperty(property,value)
+{
+	switch (property) {
+	default:
+		return false;
+	case 'level':
+		if (value == this.level) {
+			return;
+		}
+		
+		// update level
+		this.level = value;
+		var id = this.meterId;
+		
+		// update odometer text
+		var lvl = this.level * this.scaleFactor;
+		var text = document.getElementById(id + "_levelText");
+		text.setAttribute("class",greaterThanEq(lvl,0) ? "Odometer-levelText" : "Odometer-levelTextNeg");
+
+		if (greaterThanEq(lvl,10000000) || lessThanEq(lvl,-1000000)) {
+			lvl = "\043\043\043\043\043\043";
+		}
+		else {
+			lvl = Math.round(lvl);
+		}
+		setTextNode(id + "_levelText",lvl);
+
+		break;
+	}
+	return true;
+}
+>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGBody">
+<Description>
+Draw the body of this SVG meter</Description>
+<Implementation><![CDATA[
+	// figure out number of digits
+	Set tUp = $ZABS(..RangeUpper)
+	Set tLow = $ZABS(..RangeLower)
+	Set tMax = $S((tUp > tLow):tUp,1:tLow)
+
+	If (tMax > 0) {
+		Set digits = $ZLOG(tMax)+1
+	}
+	Else {
+		Set digits = 2
+	}
+
+	Set off = (..Width / 2) - 5
+	&html<<rect class="Odometer-body" x="#((..Width/2)-off)#" y="1" width="#(..Width-10)#" height="10" rx="2" />>
+	
+	Do ..DrawOdometer(..MeterId, "Odometer", ..Width/2, 2, digits)
+]]></Implementation>
+</Method>
+
+<Method name="DrawOdometer">
+<Description><![CDATA[
+Utility method for drawing odometer box.
+This is called by other meters as well.
+<var>pClass</var> is name of meter using the odometer
+<var>pCenterX</var> is x (center) placement of odometer
+<var>pTop</var> is y (top) placement of odometer
+<var>pDigits</var> is number of digits within the odometer]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>id:%Integer,pClass:%String,pCenterX:%Integer,pTop:%Integer,pDigits:%Integer=6</FormalSpec>
+<Implementation><![CDATA[
+	Set width = (pDigits + 1) * 5
+	
+	&html<
+		<rect class="#(pClass)#-levelTextBox" x="#(pCenterX-(width/2))#" y="#(pTop)#" width="#(width)#" height="8" rx="1" />
+		<text id="#(id)#_levelText" class="#(pClass)#-levelText" x="#(pCenterX+(width/2))#" y="#(pTop+7)#" text-anchor="end">0</text>
+	>
+	// odometer lines
+	Set x = pCenterX + (width/2)
+	For n = 1:1:pDigits {
+		Set x = x - 4.85
+		&html<<line style="stroke:gray; stroke-width:0.1;" x1="#(x)#" y1="#(pTop+.5)#" x2="#(x)#" y2="#(pTop+7.5)#" />>
+	}
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.Page">
+<Description><![CDATA[
+An SVG-based dashboard displaying a set of controls.<br>
+This class generates the SVG document needed to display
+a dashboard.
+Users should not use this class directly.]]></Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>%CSP.Page</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.704341</TimeCreated>
+
+<Parameter name="DOMAIN">
+<Description>
+Use our own domain for localization</Description>
+<Default>Ensemble</Default>
+</Parameter>
+
+<Parameter name="CONTENTTYPE">
+<Default>image/svg-xml</Default>
+</Parameter>
+
+<Method name="OnPreHTTP">
+<ClassMethod>1</ClassMethod>
+<ReturnType>%Boolean</ReturnType>
+<ServerOnly>1</ServerOnly>
+<Implementation><![CDATA[
+	// Avoid IE HTTP 1.1 bugs
+	Set %response.HTTPVersion = "HTTP/1.0"
+
+	// Workaround for HTTPS
+	If (%request.Secure) {
+		Do %response.SetHeader("Cache-Control","private")
+	}
+
+	// force output to be UTF-8
+	Set %response.CharSet="UTF-8"
+
+	// prevent session blocking
+	Do %session.Unlock()
+
+	Quit 1
+]]></Implementation>
+</Method>
+
+<Method name="OnPage">
+<ClassMethod>1</ClassMethod>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	Set tSC = $$$OK
+	Set $ZT = "Trap"
+
+	Do {
+		// get dashboard object
+		Set tClass = $G(%request.Data("CLASS",1))
+		Set tSC = $zobjclassmethod(tClass,"CreateDashboard",.tDashboard)
+		If ($$$ISERR(tSC)) Quit
+
+		Do tDashboard.RenderSVG()
+	} While(0)
+Done
+	Quit tSC
+Trap
+	Set $ZT=""
+	Write "<ERROR>Error rendering dashboard: ",$ZCVT($ZE,"O","HTML"),"</ERROR>",!
+	Goto Done
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.PieChart">
+<Description>
+SVG-based PieChart for Ensemble Dashboard.</Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Chart</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.513458</TimeCreated>
+
+<Parameter name="CHARTTYPE">
+<Default>PieChart</Default>
+</Parameter>
+</Class>
+
+
+<Class name="CSPX.Dashboard.Renderer">
+<Description><![CDATA[
+Defines a set of meters that form a Dashboard
+and generates the SVG framework needed to display
+the Dashboard.<br>
+Users should not work directly with this class. ]]></Description>
+<ClassType/>
+<CompileAfter>CSPX.Dashboard.Group</CompileAfter>
+<IncludeCode>EnsUI,Ensemble</IncludeCode>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>%RegisteredObject,%XML.Adaptor</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,71193.264625</TimeCreated>
+<Inheritance>right</Inheritance>
+
+<Parameter name="DOMAIN">
+<Description>
+Use our own domain for localization</Description>
+<Default>Ensemble</Default>
+</Parameter>
+
+<Parameter name="XMLNAME">
+<Default>Dashboard</Default>
+</Parameter>
+
+<Property name="Meters">
+<Description>
+List of meters displayed by this dashboard.</Description>
+<Type>Meter</Type>
+<Collection>list</Collection>
+<Parameter name="XMLPROJECTION" value="ELEMENT"/>
+<Parameter name="XMLTYPECONSTRAINT" value="CHOICE"/>
+</Property>
+
+<Property name="Orientation">
+<Description>
+Direction in which to layout meters within this dashboard.</Description>
+<Type>%String</Type>
+<InitialExpression>"horizontal"</InitialExpression>
+<Parameter name="MAXLEN" value="10"/>
+<Parameter name="VALUELIST" value=",horizontal,vertical"/>
+<Parameter name="XMLPROJECTION" value="attribute"/>
+</Property>
+
+<Property name="RefreshRate">
+<Description>
+Refresh rate, in milliseconds, for the dashboard.</Description>
+<Type>%Integer</Type>
+<InitialExpression>10000</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+<Parameter name="XMLPROJECTION" value="attribute"/>
+</Property>
+
+<Property name="Width">
+<Description>
+Desired width, in logical units, of this dashboard.</Description>
+<Type>%Integer</Type>
+<InitialExpression>500</InitialExpression>
+<Parameter name="XMLPROJECTION" value="attribute"/>
+</Property>
+
+<Property name="Label">
+<Description>
+The label displayed for the dashboard.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="250"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Metric">
+<Description>
+Default Business Metric service (config name) for this dashboard.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="128"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="InstanceMenu">
+<Description><![CDATA[
+If defined, the accompanying info pane will display a set of instances for the default Metric.<br>
+The value of this property is used as the Instance Menu caption.]]></Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="50"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Method name="InsertMeter">
+<Description>
+Insert a meter into this dashboard</Description>
+<FormalSpec>pMeter:Meter</FormalSpec>
+<Implementation><![CDATA[	Do ..Meters.Insert(pMeter)
+]]></Implementation>
+</Method>
+
+<Method name="RenderSVG">
+<Description>
+  Render the SVG for the set of meters</Description>
+<Implementation><![CDATA[
+	// make list of all meter objects (flattened)
+	Set id = 1
+	Set stackptr = 1
+	Set tGroup(stackptr) = $this
+	Set tNum(stackptr) = 1
+	Set tMeter = tGroup(stackptr).Meters.GetAt(tNum(stackptr))
+
+	While ((stackptr > 0) && $IsObject(tMeter)) {
+		Set objects(id) = tMeter
+		Set tMeter.MeterId = id
+		Set objParent(id) = $S(tGroup(stackptr)=$this:"",1:tGroup(stackptr))
+		Set id = id + 1
+		
+		// find next item
+		If (tMeter.%IsA("CSPX.Dashboard.Group")) {
+			// recurse
+			Set stackptr = stackptr + 1
+			Set tGroup(stackptr) = tMeter
+			Set tNum(stackptr) = 1
+			Set tMeter = tGroup(stackptr).Meters.GetAt(tNum(stackptr))
+		}
+		Else {
+			Set tNum(stackptr) = tNum(stackptr) + 1
+			Set tMeter = tGroup(stackptr).Meters.GetAt(tNum(stackptr))
+		}
+		
+		// do we need to pop items off the stack
+		While ((stackptr > 0) && '$IsObject(tMeter)) {
+			Set stackptr = stackptr - 1
+			If (stackptr > 0) {
+				Set tNum(stackptr) = tNum(stackptr) + 1
+				Set tMeter = tGroup(stackptr).Meters.GetAt(tNum(stackptr))
+			}
+		}
+	}
+
+	// make list of all meter classes
+	Set id = $O(objects(""))
+	While (id '= "") {
+		Set meter = objects(id)
+		Set classes(meter.%ClassName(1)) = ""
+		Set id = $O(objects(id))
+	}
+
+	// height of dashboard title
+	Set tTitleHeight = $S(..Label="":0,1:15)
+
+	// default instance value
+	Set tDefInstance = $G(%request.Data("$ID2",1))
+
+	// get initial level of all meters
+	Set id = $O(objects(""))
+	While (id '= "") {
+		Set meter = objects(id)
+		If (meter.Metric '= "") {
+
+			// pull apart metric and instance
+			Set tSC = ..ParseMetric(meter.Metric, tDefInstance, .tMetric, .tInstance)
+			If ($$$ISERR(tSC) || (tInstance = "")) Quit
+
+			// if no def instance, get one
+			If (tDefInstance = "") {
+				Set tDefInstance = $O($$$EnsMetrics(tMetric,""))
+			}
+			
+			If (tInstance = "{Instance}") {
+				Set tInstance = tDefInstance
+			}
+			If (tInstance = "") Quit
+
+			Set meter.IsRunning = $G($$$EnsMetrics(tMetric,tInstance,"%IsRunning"),0)
+
+			// special label handling for charts and grids
+			If (meter.%IsA("CSPX.Dashboard.Chart")) {
+				Do ..ProcessChartLabels(meter,tMetric,tInstance)
+			}
+			ElseIf (meter.%IsA("CSPX.Dashboard.Grid")) {
+				Do ..ProcessGridLabels(meter,tMetric,tInstance)
+			}
+			Else {
+				If (meter.Property '= "") {
+					Set meter.Level = $G($$$EnsMetrics(tMetric,tInstance,meter.Property))
+				}
+			}
+		}
+		Else {
+			// no metric for this meter: disable it
+			Set meter.IsRunning = 0
+		}
+		Set id = $O(objects(id))
+	}
+
+	Write "<?xml version=""1.0"" ?>",!
+	&html<<svg id="svg" zoomAndPan="disable" onload="Initialize()" >>
+
+	// "head" sections
+
+	// standard include
+	Write "<script type='text/ecmascript' xlink:href='enssvg.js'/>",!
+
+	Set cls = $O(classes(""))
+	While (cls '= "") {
+		Do $zobjclassmethod(cls,"OnSVGHead")
+		Set cls = $O(classes(cls))
+	}
+
+  	// find svg font from localization file
+  	Set tFont = $$$LocalizeText("Ensemble","FontFamily","tahoma,verdana")
+
+	// style: 1 per meter type
+	Write "<style type=""text/css""><![CDATA[",!
+
+	&html<
+	/* Generic styles */
+text, tspan {
+	font-family: #(tFont)#;
+}
+
+.Meter-canvas {
+	fill: darkblue;
+	stroke : gray;
+	stroke-width : 1;
+}
+text.Meter-label {
+	pointer-events: none;
+	font-size: 8;
+	fill: black;
+	stroke: none;
+}
+.Meter-rect {
+	fill: white;
+	stroke: black;
+	stroke-width: 0.5px;
+	stroke-linejoin: round;
+	opacity: 0.8;
+}
+.Meter-group {
+	display: none;
+}
+.Meter-groupSelected {
+	fill: lightgreen;
+	opacity: 0.5;
+	stroke: red;
+	stroke-width: 1px;
+	stroke-linejoin: round;
+}
+
+.Meter-isStopped {
+	fill: gray;
+	stroke: none;
+	stroke-width: 0.5px;
+	opacity: 0.5;
+}
+.Meter-isRunning {
+	display: none;
+}
+
+	>
+	
+	Set cls = $O(classes(""))
+	While (cls '= "") {
+		Write $C(9),"/* Style for: ",cls," */",!
+		Do $zobjclassmethod(cls,"OnSVGStyle")
+		Set cls = $O(classes(cls))
+	}
+	Write "]]]]><![CDATA[></style>>",!
+	
+	// defs: 1 per meter type
+	&html<
+	<defs id="defs">
+	
+<!-- context menu -->
+<menu id="CanvasMenu" xmlns="http://mynamespace.com/">
+    <header>Dashboard Menu</header>
+	<item enabled="no" id="menu_drilldown" onactivate="drillDown();">#($$$Text("Drill Down"))#</item>
+    <separator/>
+    <menu id="menu_zoom">
+	 <header>#($$$Text("Zoom"))#</header>
+	 <item id="menu_zoom_33" onactivate="setZoom(33);">33%</item>
+	 <item id="menu_zoom_50" onactivate="setZoom(50);">50%</item>
+	 <item id="menu_zoom_75" onactivate="setZoom(75);">75%</item>
+	 <item id="menu_zoom_88" onactivate="setZoom(88);">88%</item>
+	 <item checked="yes" id="menu_zoom_100" onactivate="setZoom(100);">100%</item>
+	 <item id="menu_zoom_110" onactivate="setZoom(110);">110%</item>
+	 <item id="menu_zoom_125" onactivate="setZoom(125);">125%</item>
+	 <item id="menu_zoom_150" onactivate="setZoom(150);">150%</item>
+	 <item id="menu_zoom_200" onactivate="setZoom(200);">200%</item>
+	 <item id="menu_zoom_300" onactivate="setZoom(300);">300%</item>
+	 <item id="menu_zoom_400" onactivate="setZoom(400);">400%</item>
+    </menu>
+    <separator/>
+	<item enabled="no" id="menu_changescale" onactivate="changeScale();">#($$$Text("Change Chart Scale"))#</item>
+    <separator/>
+	<item action="Find" id="Find">#($$$Text("Find..."))#</item>
+	<item action="FindAgain" id="FindAgain">#($$$Text("Find Again"))#</item>
+    <separator/>
+    <item action='ViewSource'>#($$$Text("View Source..."))#</item>
+    <item action="About">#($$$Text("About SVG Viewer..."))#</item>
+</menu>
+
+	<!-- filters -->
+	<filter id="dropShadow" x="-2%" y="-2%" height="120%" width="120%">
+	<feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+	<feOffset dx="4px" dy="4px" result="offsetBlur" />
+	<feMerge>
+		<feMergeNode in="offsetBlur"/>
+		<feMergeNode in="SourceGraphic"/>
+	</feMerge>
+	</filter>
+	
+	<linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+	<stop offset="10%" style="stop-color:#DDEEFF" />
+	<stop offset="90%" style="stop-color:blue" />
+	</linearGradient>
+	>
+
+	Set cls = $O(classes(""))
+	While (cls '= "") {
+		Write "<!-- defs for: ",cls," -->",!
+		Do $zobjclassmethod(cls,"OnSVGDefs")
+		Set cls = $O(classes(cls))
+	}
+	
+	// object-specific clipping paths
+	Set id = $O(objects(""))
+	While (id '= "") {
+		Set meter = objects(id)
+		
+		&html<
+<clipPath id="#(id)#_clipPath_label">
+	<rect x="3" y="#(meter.Height-12)#" width="#(meter.Width-6)#" height="10" rx="2" />
+</clipPath>
+		>		
+		Set id = $O(objects(id))
+	}
+
+
+	&html<</defs>>
+
+	// general script: 1 per meter type
+	Write "<script language=""text/javascript""><![CDATA[",!
+	
+	&js<
+
+// external API object and methods
+var api = new Object();
+
+// array of meter objects
+var meterList = new Array();
+var labelList = new Array();
+
+var mouseScale = 50;
+var canvasName = 'dashboard';
+
+function Initialize()
+{
+	canvasScale = 2;
+	
+	// replace context menu
+	var newMenuRoot = parseXML(printNode(document.getElementById('CanvasMenu')), contextMenu);
+	contextMenu.replaceChild( newMenuRoot, contextMenu.firstChild );
+
+	// associate API methods with loading div in html parent
+	api.setMeterProperty = setMeterProperty;
+	api.getMetricList = getMetricList;
+	api.setDefaultInstance = setDefaultInstance;
+
+	// find loading div in outer html
+	var loadingDiv = self.document.getElementById("loading");
+
+	loadingDiv.api = api;
+	topGroup.arrangeMeters();
+	topGroup.alignMeters();
+	
+	// set size and view box
+	svg = document.getElementById("canvasSVG");
+	svg.setAttribute("viewBox","0 0 " + topGroup.width + " " + (topGroup.height + #(tTitleHeight)#));
+
+	setCanvasSize(topGroup.width,topGroup.height + #(tTitleHeight)#);
+	setZoom(getCookie(canvasName,100));
+	
+	// Set dashboard label
+	setTextNode('DashboardLabel',resolveValue(topGroup.label));
+	
+	// Update labels
+	for (id in labelList){
+		var label = labelList[id];
+		setTextNode(id + '_label',resolveValue(label));
+	}
+
+	// initialize meter levels
+	for (id in meterList){
+		var meter = meterList[id];
+		if (meter.seriesData) {
+			for (var i = 0; i != meter.seriesData.length; i++) {
+				var data = meter.seriesData[i];
+				meter.seriesData[i] = null; // force initial update
+				meter.setProperty('series',data,i);
+			}
+		}
+		else {
+			var level = meter.level;
+			meter.level = null; // force initial update
+			meter.setProperty('level',level);
+
+			// !!!
+			if (meter.propertyCount != 1) {
+				meter.setProperty('level',0,1);
+			}
+		}
+	}
+	
+	if (loadingDiv) {
+		loadingDiv.style.display = 'none';
+	}
+
+	// tell container to start auto-refresh
+	self.startAutoRefresh();
+	
+	// tell container default instance value
+	self.initDefaultInstance(defaultInstance);
+}
+
+// set the value of the results element for the external system to read.
+function canvas_setResultsDiv(value)
+{
+	// find results div
+	var results = self.document.getElementById("results");
+
+	// place value into results
+	if (results) {
+		results.innerHTML = value;
+	}
+}
+
+// raise an event for the external system
+function canvas_raiseEvent(type)
+{
+	self.raiseEvent(type);
+}
+
+// set a property for the specified meter
+function setMeterProperty(id,property,value,idx)
+{
+	// dispatch to appropriate meter callback
+	var meter = meterList[id];
+	if (meter) {
+		if (!meter.setProperty(property,value,idx)) {
+			// invoke default method
+			Meter_setProperty(meter,property,value,idx);
+		}
+		
+		// update property sheet for current item
+		if (meter.meterId == currMeterId) {
+			switch (property) {
+			case 'level':
+				self.updatePropertyPane(meter.level,resolveValue(meter.metric));
+				break;
+			}
+		}
+	}
+}
+
+// Make list of metrics we are interested in id order
+function getMetricList()
+{
+	var list = '';
+	
+	for (id in meterList){
+		var meter = meterList[id];
+		if (meter.seriesData) {
+			// chart: update each series
+			for (i = 0; i != meter.seriesProperty.length; i++) {
+				// meter
+				if (meter.metric != '' && meter.seriesProperty[i] != '') {
+					if ('Grid' == meter.type) {
+						list += '^' + id + ':' + resolveValue(meter.metric) + ':' + meter.seriesProperty[i] + ':' + i + ':S:' + meter.method + ':' + (meter.isRunning ? '1' : '0') + ':' + meter.defList + ':' + meter.seriesInstance[i] + ':Grid:' + meter.columns + ':' + meter.rows;
+					}
+					else {
+						// chart
+						list += '^' + id + ':' + resolveValue(meter.metric) + ':' + meter.seriesProperty[i] + ':' + i + ':S:' + meter.method + ':' + (meter.isRunning ? '1' : '0') + ':' + meter.defList + ':' + meter.seriesInstance[i] + ':' + meter.xDimension;
+					}
+				}
+			}
+		}
+		else {
+			// meter
+			if (meter.metric != '' && meter.property != '') {
+				list += '^' + id + ':' + resolveValue(meter.metric) + ':' + meter.property + ':0:L:' + meter.method + ':' + (meter.isRunning ? '1' : '0') + ':' + meter.defList + ':' + ':';
+			}
+			if (meter.propertyCount != 1) {
+				// make more generic!!!
+				if (meter.metric != '' && meter.odometerProperty != '') {
+					list += '^' + id + ':' + resolveValue(meter.metric) + ':' + meter.odometerProperty + ':1:L:' + meter.method + ':' + (meter.isRunning ? '1' : '0') + ':' + meter.defList + ':' + ':';
+				}
+			}
+		}
+		
+		// see if we need to evaluate labels !!!
+		if (meter.labelSource && meter.labelSource != '') {
+			list += '^' + id + ':' + resolveValue(meter.metric) + ':' + meter.labelSource + ':' + 'labels' + ':S:' + ':' + (meter.isRunning ? '1' : '0') + ':' + meter.defList + ':' + ':';
+		}
+	}
+
+	return list;
+}
+
+// resolves any instance variable within a name
+function resolveValue(name)
+{
+	return(name.replace(/{Instance}/g,defaultInstance));
+}
+
+var defaultInstance = '#(tDefInstance)#';
+function setDefaultInstance(inst)
+{
+	if (defaultInstance != inst) {
+		defaultInstance = inst;
+		
+		// update dashboard label
+		setTextNode('DashboardLabel',resolveValue(topGroup.label));
+		
+		// Update labels
+		for (id in labelList){
+			var label = labelList[id];
+			setTextNode(id + '_label',resolveValue(label));
+		}
+
+		// force info pane update
+		canvas_raiseEvent("SELECT");
+	}
+}
+
+// Group methods
+
+// add a meter to this group
+function Group_addMeter(meter)
+{
+	this.children[this.children.length] = meter;
+	meter.parent = this;
+}
+
+// arrange all meters within a group;
+// adjust the width and height of this group
+function Group_arrangeMeters()
+{
+	var xpos = this.xPos;
+	var ypos = this.yPos;
+	
+	// loop over all children (meters)
+	for (var n = 0; n != this.children.length; n++) {
+		var meter = this.children[n];
+		moveMeter(meter.meterId,xpos,ypos);
+		if (meter.type == 'Group') {
+			// recurse
+			meter.arrangeMeters();
+		}
+		
+		// adjust size of this group
+		if (greaterThanEq(xpos-this.xPos+meter.width,this.width)) {
+			this.width = xpos-this.xPos+meter.width;
+		}
+		if (greaterThanEq(ypos-this.yPos+meter.height,this.height)) {
+			this.height = ypos-this.yPos+meter.height;
+		}
+
+		// set placement for next item
+		if (this.orientation == 'horizontal') {
+			xpos = xpos + meter.width;
+		}
+		else {
+			ypos = ypos + meter.height;
+		}
+	}
+}
+
+// align all meters within a group;
+// assume that meters have been arranged first
+function Group_alignMeters()
+{
+	return; // ignore
+	
+	if (this.children.length == 0) {
+		return;
+	}
+	
+	var xShift = 0;
+	var yShift = 0;
+	var meter = null;
+
+	if (this.orientation == 'horizontal') {
+		if (this.align == 'right') {
+			meter = this.children[this.children.length - 1];
+			xShift = this.width - (meter.xPos + meter.width);
+		}
+		else if (this.align == 'center') {
+			meter = this.children[this.children.length - 1];
+			xShift = (this.width - (meter.xPos + meter.width)) / 2;
+		}
+		else { // left
+			xShift = 0;
+		}
+	
+		// now shift the meters	
+		for (var n = 0; n != this.children.length; n++) {
+			meter = this.children[n];
+			moveMeter(meter.meterId,meter.xPos + xShift,meter.yPos);
+			if (meter.type == 'Group') {
+				// recurse
+				meter.alignMeters();
+			}
+		}
+	}
+	else {
+		// now shift the meters	
+		for (var n = 0; n != this.children.length; n++) {
+			meter = this.children[n];
+			//moveMeter(meter.meterId,meter.xPos + xShift,meter.yPos);
+			if (meter.type == 'Group') {
+				// recurse
+				meter.alignMeters();
+			}
+		}
+	}
+}
+
+// Go to the link associate with this meter
+function drillDown()
+{
+	var meter = meterList[currMeterId];
+	if (meter && meter.link != '') {
+		self.gotoPage(resolveValue(meter.link) + (meter.link.indexOf('?') == -1 ? '?' : '&') + 'METRIC=' + escape(resolveValue(meter.metric)) + '&PROPERTY=' + escape(meter.property));
+	}
+}
+
+// Change current scale for chart
+function changeScale()
+{
+	var meter = meterList[currMeterId];
+	if (meter && meter.chart) {
+		meter.chart.toggleScale();
+	}
+}
+
+// event handling
+
+var currMeterId = null;
+var currOperation = null;
+
+function selectMeter(id)
+{
+	if (currMeterId == id) {
+		return;
+	}
+
+	// unhighlight
+	if (currMeterId) {
+		var rect = document.getElementById(currMeterId + "_BoundingRect");
+		rect.setAttribute("class","Meter-group");
+	}
+	
+	currMeterId = id;
+	// highlight
+	if (currMeterId) {
+		var rect = document.getElementById(currMeterId + "_BoundingRect");
+		rect.setAttribute("class","Meter-groupSelected");
+	}
+	
+	var drill = false;
+	var scale = false;
+	
+	if (currMeterId) {
+		// update info pane
+		var meter = meterList[currMeterId];
+		canvas_setResultsDiv(meter.getInfo());
+
+		// enable drill menu?
+		if (meter.link != '') {
+			drill = true;
+		}
+
+		// enable scale menu?
+		if (meter && meter.chart && meter.independentScale) {
+			scale = true;
+		}
+	}
+	else {
+		canvas_setResultsDiv('');
+	}
+
+ 	setMenuItemOption("enabled","menu_drilldown", "", drill);
+ 	setMenuItemOption("enabled","menu_changescale", "", scale);
+
+	canvas_raiseEvent("SELECT");
+}
+
+function Meter_getInfo()
+{
+	var prop = this.property;
+	if (this.seriesProperty) {
+		prop = 'N/A';
+	}
+	
+	var info = "Type:STRING:" + this.type + "\x01" + 
+			"Label:STRING:" + resolveValue(this.label) + "\x01" + 
+			"Status:STRING:" + (this.isRunning ? "Running" : "Stopped" ) + "\x01" + 
+			"Description:STRING:" + this.description + "\x01" +
+			"Metric:METRIC:" + resolveValue(this.metric) + "\x01" +
+			"Property:STRING:" + prop + "\x01" +
+			"Units:STRING:" + this.units + "\x01" +
+			"Level:LEVEL:" + this.level + "\x01" +
+			"RangeLower:NUMBER:" + this.rangeLower + "\x01" +
+			"RangeUpper:NUMBER:" + this.rangeUpper + "\x01" +
+			"ThresholdLower:NUMBER:" + this.thresholdLower + "\x01" +
+			"ThresholdUpper:NUMBER:" + this.thresholdUpper + "\x01" +
+			"ScaleFactor:NUMBER:" + this.scaleFactor + "\x01";
+	
+	// additional info for charts		
+	if (this.seriesProperty && this.seriesLabel && this.seriesColor) {
+		var series = 'Legend:LEGEND:';
+		for (i = 0; i != this.seriesLabel.length; i++) {
+			series += this.seriesLabel[i];
+			series += "^" + this.seriesColor[i] + ";";
+		} 
+		info += series + "\x01";;
+	}
+			
+	return info;
+}
+
+// enable/disable this meter
+function Meter_enable(flag)
+{
+	if (flag != this.IsRunning) {
+		this.isRunning = flag;
+		var rect = document.getElementById(this.meterId + "_IsRunningRect");
+		var style = flag ? "Running" : "Stopped";
+		rect.setAttribute("class","Meter-is" + style);
+	}
+}
+
+// default implementation of setProperty
+function Meter_setProperty(meter,property,value,idx)
+{
+	switch (property) {
+	case 'enabled':
+		meter.enable(value);
+		break;
+	case 'rangeLower':
+	case 'rangeUpper':
+	case 'thresholdLower':
+	case 'thresholdUpper':
+	case 'link':
+	case 'units':
+		meter[property] = value;
+		break;
+	}
+}
+
+function moveMeter(id,xpos,ypos)
+{
+	var group = document.getElementById(id + "_Group");
+	group.setAttribute("transform","translate(" + xpos + "," + ypos + ")");
+
+	var meter = meterList[id];
+	meter.xPos = xpos;
+	meter.yPos = ypos;
+}
+
+// mouse events
+function canvasMouseDown(evt)
+{
+	evt.stopPropagation();
+	selectMeter(null);
+}
+
+function canvasMouseMove(evt)
+{
+	evt.stopPropagation();
+
+	if (currMeterId && (currOperation == 'move')) {
+		// move meter
+		var coord = document.getElementById("canvasSVG");
+		var xoff = coord.getAttribute("x") * 1;
+		var yoff = coord.getAttribute("y") * 1;
+
+		// update position of selected items
+		var dx = ((evt.clientX * (mouseScale/currZoom)) + deltaX) - moveShape.xPos;
+		var dy = ((evt.clientY * (mouseScale/currZoom)) + deltaY) - moveShape.yPos;
+
+		moveMeter(currMeterId,(evt.clientX * (mouseScale/currZoom)) - xoff, (evt.clientY * (mouseScale/currZoom)) - yoff);
+	}
+}
+
+function canvasMouseUp(evt)
+{
+	evt.stopPropagation();
+	
+	if (currMeterId && (currOperation == 'move')) {
+		currOperation = null;
+		moveShape = null;
+	}	
+}
+
+function canvasMouseOver(evt)
+{
+	evt.stopPropagation();
+}
+
+var deltaX = 0;
+var deltaY = 0;
+var moveShape = null;
+
+function meterMouseDown(evt,id)
+{
+	evt.stopPropagation();
+	var el = evt.getTarget();
+	selectMeter(id);
+	var meter = meterList[id];
+	
+	return; // !!!
+	
+	// figure out offset of mouse from shape...
+	deltaX = meter.xPos - (evt.clientX * (mouseScale/currZoom));
+	deltaY = meter.yPos - (evt.clientY * (mouseScale/currZoom));
+	moveShape = meter;
+	
+	currOperation = 'move';
+}
+
+
+// -------------------------------------------------------------------
+
+// Utility methods:
+
+// Set the contents of text element id to str
+function setTextNode(id,str)
+{
+	var text = document.getElementById(id);
+	if (!text) {
+		return;
+	}
+
+	// show first line only
+	
+	// create next text node and replace the current one
+	var oldNode = text.firstChild;
+	if (oldNode) {
+		text.removeChild(oldNode);
+	}
+	var txt = '';
+	
+	// make sure str is a string
+	str = str + "";
+	if (str) {
+		var t = str.split('\n');
+		txt = t[0];
+	}
+	var textNode;
+	textNode = document.createTextNode(txt);
+	text.appendChild(textNode);
+}
+>
+	// !!! workaround functions
+	Write "function lessThanEq(a,b) { return a <= b; }",!
+	Write "function greaterThanEq(a,b) { return a >= b; }",!
+	Write "function between(val,a,b) { return ((val >= a) && (val <= b)); }",!
+
+	Write "// class specific scripts",!
+
+	Set cls = $O(classes(""))
+	While (cls '= "") {
+		Write "// script for: ",cls,!
+		Do $zobjclassmethod(cls,"OnSVGScript")
+		Set cls = $O(classes(cls))
+	}
+
+	Write "// top level group",!
+	&js<
+var topGroup = new Object();
+topGroup.children = new Array();
+topGroup.type = 'Group';
+topGroup.orientation = '#(..Orientation)#';
+topGroup.width = 0;
+topGroup.height = 0;
+topGroup.xPos = 0;
+topGroup.yPos = #(tTitleHeight)#;
+topGroup.arrangeMeters = Group_arrangeMeters;
+topGroup.alignMeters = Group_alignMeters;
+topGroup.addMeter = Group_addMeter;
+topGroup.label = '#(..Label)#';
+	>
+
+	Write "// construct meter objects",!
+
+	// specific js code for each meter
+	Set id = $O(objects(""))
+	While (id '= "") {
+		Set meter = objects(id)
+
+		// create meter object & links to methods
+		&js<
+
+// -------------------------------		
+// meter: #(id)#
+var meter = new Object();
+meterList[#(id)#] = meter;
+meter.type = '#($ZCVT(meter.%ClassName(),"O","JS"))#';
+meter.getInfo = Meter_getInfo;
+meter.enable = Meter_enable;
+>
+		
+		If (objParent(id) = "") {
+			&js<
+topGroup.addMeter(meter);
+			>
+		}
+		Else {
+			&js<
+meterList[#(objParent(id).MeterId)#].addMeter(meter);
+			>
+		}
+
+		If (meter.ShowLabel) {
+			&js<labelList[#(id)#]='#($ZCVT(meter.Label,"O","JS"))#';>
+		}
+
+		// setProperty method: based on class name
+		Write "meter.setProperty = ",meter.%ClassName(0),"_setProperty;",!
+
+		// Initialize client properties
+		Do meter.SetClientProperties()
+		
+		// callback to get user JS
+		Do meter.OnSVGInitJS()
+
+		Set id = $O(objects(id))
+	}
+	Write "]]]]><![CDATA[></script>>"
+
+	// canvas
+	&html<
+	<svg id="canvasSVG" x="0" y="0" width="100%" height="100%" >
+	<g id="canvas" 
+		onmousedown="canvasMouseDown(evt);"
+		onmousemove="canvasMouseMove(evt);"
+		onmouseup="canvasMouseUp(evt);"
+		onmouseover="canvasMouseOver(evt);"
+	>
+	<rect class="Meter-canvas" x="0%" y="0%" width="100%" height="100%" />
+	>
+	
+	// dashboard title
+	If (..Label '= "") {
+		&html<
+			<rect class="Meter-rect" x="20%" y="2" height="#(tTitleHeight-4)#" width="60%" rx="2" />
+			<text class="Meter-label" id="DashboardLabel" x="50%" y="#(tTitleHeight-4)#" text-anchor="middle"> </text>
+		>
+	}
+
+	// meter bodies: 1 per object
+	Set id = $O(objects(""))
+	While (id '= "") {
+		Set meter = objects(id)
+
+		&html<<g id="#(id)#_Group" transform="translate(#(meter.XPos)#,#(meter.YPos)#)" onmousedown="meterMouseDown(evt,#(id)#);" >>
+		&html<<rect id="#(id)#_BoundingRect" class="Meter-group" x="1" y="1" height="#(meter.Height-2)#" width="#(meter.Width-2)#" rx="3" />>
+			
+		Do meter.OnSVGBody()
+
+		// common label for meters
+		If (meter.ShowLabel) {
+			&html<
+				<rect class="Meter-rect" x="3" y="#(meter.Height-12)#" height="10" width="#(meter.Width-6)#" rx="2" />
+				<text id="#(id)#_label" class="Meter-label" x="#(meter.Width/2)#" y="#(meter.Height-4)#" text-anchor="middle" style="clip-path:url(#("#"_id)#_clipPath_label);">#(meter.Label)#</text>
+			>
+		}
+
+		// shroud for meters that are not running
+		Set stopped = $S(meter.IsRunning:"Running",1:"Stopped")
+		&html<<rect id="#(id)#_IsRunningRect" class="Meter-is#(stopped)#" x="0" y="0" height="#(meter.Height)#" width="#(meter.Width)#" />>
+
+		&html<</g>>
+
+		Set id = $O(objects(id))
+	}
+	&html<</g></svg></svg>>
+	Quit $$$OK
+]]></Implementation>
+</Method>
+
+<Method name="GenerateCode">
+<Description><![CDATA[
+Called by Dashboard class to generate code to
+create an instance of this object.
+The object instance is called <var>pDashboard</var>.]]></Description>
+<FormalSpec>pCode:%CharacterStream</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	Do:(..Label'="") pCode.WriteLine(" Set pDashboard.Label=""" _ ..Label _ """")
+	Do:(..Metric'="") pCode.WriteLine(" Set pDashboard.Metric=""" _ ..Metric _ """")
+	Do:(..Orientation'="") pCode.WriteLine(" Set pDashboard.Orientation= """ _ ..Orientation _ """")
+	Do:(..Width'="") pCode.WriteLine(" Set pDashboard.Width= " _ ..Width)
+	Do:(..RefreshRate'="") pCode.WriteLine(" Set pDashboard.RefreshRate= " _ ..RefreshRate)
+	Do:(..InstanceMenu'="") pCode.WriteLine(" Set pDashboard.InstanceMenu= """ _ ..InstanceMenu _ """")
+	Quit $$$OK
+]]></Implementation>
+</Method>
+
+<Method name="ParseMetric">
+<Description>
+Pull apart a Metric value into metric name and instance name.</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>pMetric:%String,pDefaultInstance:%String,*pMetricName:%String,*pInstance:%String</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	Set tSC = $$$OK
+
+	// pull apart metric and instance
+	Set pMetricName = $P(pMetric,"(",1)
+	Set pInstance = $P($P(pMetric,"(",2),")",1)
+
+	If (pInstance = "") {
+		// find first instance for metric
+		Set pInstance = $O($$$EnsMetrics(pMetricName,""))
+	}
+	Else {
+		// see if instance is a {} variable
+		If (($E(pInstance,1) = "{") && ($E(pInstance,$L(pInstance)) = "}")) {
+			Set tVar = $E(pInstance,2,$L(pInstance)-1)
+			If (tVar = "Instance") {
+				// the client will resolve this
+				Set pInstance = "{Instance}"
+			}
+			ElseIf $IsObject($G(%request)) {
+				Set pInstance = $G(%request.Data(tVar,1))
+			}
+			Else {
+				Set pInstance = ""
+			}
+		}
+	}
+	
+	Quit tSC
+]]></Implementation>
+</Method>
+
+<Method name="EvalMetric">
+<Description>
+Evaluate a metric name and return a form suitable for the client.</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>pMetric:%String,pDefaultInstance:%String=""</FormalSpec>
+<ReturnType>%String</ReturnType>
+<Implementation><![CDATA[
+	Set tMetric = ""
+	If (pDefaultInstance = "") {
+		If $IsObject($G(%request)) {
+			Set pDefaultInstance = $G(%request.Data("$ID2",1))
+		}
+	}
+	
+	Set tSC = ..ParseMetric(pMetric,pDefaultInstance,.tMetric,.tInstance)
+	If ($$$ISOK(tSC) && (pMetric [ "(") && (tInstance '= "")) {
+		Quit tMetric _ "(" _ tInstance _ ")"
+	}
+
+	Quit tMetric
+]]></Implementation>
+</Method>
+
+<Method name="ProcessChartLabels">
+<Description>
+Special label and initial data processing for charts</Description>
+<FormalSpec>meter:Meter,tMetric:%String,tInstance:%String</FormalSpec>
+<Implementation><![CDATA[
+	// see if we need labels
+	If (meter.LabelSource '= "") {
+		// evaluate label source property for labels
+		Set labels = ""
+		Set src = $O($$$EnsMetrics(tMetric,tInstance,meter.LabelSource,""))
+		While (src '= "") {
+			Set labels = labels _ $S(labels="":"",1:":") _ $G($$$EnsMetrics(tMetric,tInstance,meter.LabelSource,src),"none")
+			Set src = $O($$$EnsMetrics(tMetric,tInstance,meter.LabelSource,src))
+		}
+		Set meter.XLabels = labels
+	}
+
+	If (meter.XDimension = "instances") {
+		Set labels = ""
+		Set tSeriesInstance = $O($$$EnsMetrics(tMetric,""))
+		While (tSeriesInstance '= "") {
+			Set labels = labels _ $S(labels="":"",1:":") _ tSeriesInstance
+			Set tSeriesInstance = $O($$$EnsMetrics(tMetric,tSeriesInstance))
+		}
+		Set meter.XLabels = labels
+	}
+	
+	// loop over series definitions
+	Set labels = ""
+	For i=1:1:meter.SeriesList.Count() {
+		Set tSeries = meter.SeriesList.GetAt(i)
+		Set data = ""
+
+		If (tSeries.Property '= "") {
+			If (meter.XDimension = "instances") {
+				// loop over instances
+				Set tSeriesInstance = $O($$$EnsMetrics(tMetric,""))
+				While (tSeriesInstance '= "") {
+					Set data = data _ $S(data="":"",1:":") _ ($G($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property),0))
+					Set tSeriesInstance = $O($$$EnsMetrics(tMetric,tSeriesInstance))
+				}
+			}
+			Else {
+				// default: loop over nodes for current instance
+				Set tSeriesInstance = $S(tSeries.Instance="":tInstance,1:tSeries.Instance)
+				Set key = $O($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,""))
+				While (key '= "") {
+					Set data = data _ $S(data="":"",1:":") _ ($G($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,key),0))
+					Set key = $O($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,key))
+				}
+				
+				// pick up x labels
+				Set labels = labels _  $S(labels="":"",1:":") _ tSeries.Label
+			}
+		}
+		
+		Set tSeries.Data = data
+	}
+
+	Set showXLabels = 0
+	If (meter.XDimension = "instances") {
+		// we already have labels
+		Set showXLabels = 0
+	}
+	ElseIf (meter.LabelSource '= "") {
+		// we already have labels
+		Set showXLabels = 0
+	}
+	ElseIf (meter.XDimension [ "series") {
+		// use series labels
+		Set showXLabels = 1
+	}
+	Else {
+		// test style
+		Set showXLabels = (","_$ZCVT(meter.Style,"L")_",")["xlabels"
+	}
+	
+	If ((showXLabels) && (labels '= "")) {
+		Set meter.XLabels = labels
+	}
+]]></Implementation>
+</Method>
+
+<Method name="ProcessGridLabels">
+<Description>
+Special label and initial data processing for grids</Description>
+<FormalSpec>meter:Meter,tMetric:%String,tInstance:%String</FormalSpec>
+<Implementation><![CDATA[
+	// see if we need labels
+	Set tColType = $S($IsObject(meter.Columns):meter.Columns.Source,1:"")
+	Set tRowType = $S($IsObject(meter.Rows):meter.Rows.Source,1:"")
+	Set tColSize = $S($IsObject(meter.Columns):meter.Columns.Size,1:"")
+	Set tRowSize = $S($IsObject(meter.Rows):meter.Rows.Size,1:"")
+	Set tColReverse = $S($IsObject(meter.Columns):meter.Columns.Reverse,1:0)
+	Set tRowReverse = $S($IsObject(meter.Rows):meter.Rows.Reverse,1:0)
+
+	If (tColType = "instances") {
+		// get current set of instances
+		Set labels = ""
+		Set tSeriesInstance = $O($$$EnsMetrics(tMetric,""))
+		While (tSeriesInstance '= "") {
+			Set labels = labels _ $S(labels="":"",1:":") _ tSeriesInstance
+			Set tSeriesInstance = $O($$$EnsMetrics(tMetric,tSeriesInstance))
+		}
+		Set meter.ColLabels = labels
+		Set meter.Unsupported = $Case(tRowType,"instances":1,:0)
+
+		// loop over rows to get data
+		If (tRowType = "series") {
+			For i=1:1:meter.Rows.SeriesList.Count() {
+				Set tSeries = meter.Rows.SeriesList.GetAt(i)
+				Set data = ""
+
+				If (tSeries.Property '= "") {
+					// loop over instances
+					Set tSeriesInstance = $O($$$EnsMetrics(tMetric,""))
+					While (tSeriesInstance '= "") {
+						Set data = data _ $S(data="":"",1:":") _ ($G($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property)))
+						Set tSeriesInstance = $O($$$EnsMetrics(tMetric,tSeriesInstance))
+					}
+				}
+				Set tSeries.Data = data
+			}
+		}
+		ElseIf (tRowType = "history") {
+			// get data
+			Set tSeries = meter.Rows.SeriesList.GetAt(1)
+			Set data = ""
+
+			If ($IsObject(tSeries) && (tSeries.Property '= "")) {
+				// loop over instances
+				Set tSeriesInstance = $O($$$EnsMetrics(tMetric,""))
+				While (tSeriesInstance '= "") {
+					// loop over history
+					Set series = ""
+					Set key = $O($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,""))
+					While (key '= "") {
+						Set series = series _ $S(series="":"",1:":") _ ($G($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,key)))
+						Set key = $O($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,key))
+					}
+					// assemble one list of all values
+					Set data = data _ $S(data="":"",1:"^") _ series
+					Set tSeriesInstance = $O($$$EnsMetrics(tMetric,tSeriesInstance))
+				}
+			}
+			Set tSeries.Data = data
+		} 
+	}
+	ElseIf (tColType = "series") {
+		// default: loop over row series and get labels
+		Set labels = ""
+		For i=1:1:meter.Columns.SeriesList.Count() {
+			Set tSeries = meter.Columns.SeriesList.GetAt(i)
+			Set tSeriesInstance = $S(tSeries.Instance="":tInstance,1:tSeries.Instance)
+			Set data = ""
+			Set key = $O($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,""))
+			While (key '= "") {
+				Set data = data _ $S(data="":"",1:":") _ ($G($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,key)))
+				Set key = $O($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,key))
+			}
+
+			Set tSeries.Data = data
+
+			// pick up labels
+			Set labels = labels _  $S(labels="":"",1:":") _ tSeries.Label
+		}
+		Set meter.ColLabels = labels
+		Set meter.Unsupported = $Case(tRowType,"series":1,:0)
+	}
+	ElseIf (tColType = "history") {
+		Set sz = $S(tColSize="":5,1:tColSize)
+		Set labels = ""
+		For i=1:1:sz {
+			Set labels = labels _  $S(labels="":"",1:":") _ i
+		}
+		Set meter.ColLabels = labels
+		Set meter.Unsupported = $Case(tRowType,"history":1,:0)
+	}
+	ElseIf (tColType = "") {
+		Set meter.ColLabels = meter.Property
+		Set meter.Unsupported = $Case(tRowType,"":1,:0)
+	}
+	Else {
+		Set meter.ColLabels = "N/A"
+		Set meter.Unsupported = 1
+	}
+
+	If (tRowType = "instances") {
+		// get current set of instances
+		Set labels = ""
+		Set tSeriesInstance = $O($$$EnsMetrics(tMetric,""))
+		While (tSeriesInstance '= "") {
+			Set labels = labels _ $S(labels="":"",1:":") _ tSeriesInstance
+			Set tSeriesInstance = $O($$$EnsMetrics(tMetric,tSeriesInstance))
+		}
+		Set meter.RowLabels = labels
+
+		// loop over cols to get data
+		If (tColType = "series") {
+			For i=1:1:meter.Columns.SeriesList.Count() {
+				Set tSeries = meter.Columns.SeriesList.GetAt(i)
+				Set data = ""
+
+				If (tSeries.Property '= "") {
+					// loop over instances
+					Set tSeriesInstance = $O($$$EnsMetrics(tMetric,""))
+					While (tSeriesInstance '= "") {
+						Set data = data _ $S(data="":"",1:":") _ ($G($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property)))
+						Set tSeriesInstance = $O($$$EnsMetrics(tMetric,tSeriesInstance))
+					}
+				}
+				Set tSeries.Data = data
+			}
+		}
+		ElseIf (tColType = "history") {
+			// get data (copy of Row=history, col=instance case)
+			Set tSeries = meter.Columns.SeriesList.GetAt(1)
+			Set data = ""
+
+			If ($IsObject(tSeries) && (tSeries.Property '= "")) {
+				// loop over instances
+				Set tSeriesInstance = $O($$$EnsMetrics(tMetric,""))
+				While (tSeriesInstance '= "") {
+					// loop over history
+					Set series = ""
+					Set key = $O($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,""))
+					While (key '= "") {
+						Set series = series _ $S(series="":"",1:":") _ ($G($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,key)))
+						Set key = $O($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,key))
+					}
+					// assemble one list of all values
+					Set data = data _ $S(data="":"",1:"^") _ series
+					Set tSeriesInstance = $O($$$EnsMetrics(tMetric,tSeriesInstance))
+				}
+			}
+			Set tSeries.Data = data
+		}
+	}
+	ElseIf (tRowType = "series") {
+		// default: loop over row series and get labels
+		Set labels = ""
+		For i=1:1:meter.Rows.SeriesList.Count() {
+			Set tSeries = meter.Rows.SeriesList.GetAt(i)
+			Set tSeriesInstance = $S(tSeries.Instance="":tInstance,1:tSeries.Instance)
+			Set data = ""
+			Set key = $O($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,""))
+			While (key '= "") {
+				Set data = data _ $S(data="":"",1:":") _ ($G($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,key)))
+				Set key = $O($$$EnsMetrics(tMetric,tSeriesInstance,tSeries.Property,key))
+			}
+			If (tColType '= "instances") {
+				// for instances we already have data
+				Set tSeries.Data = data
+			}
+
+			// pick up labels
+			Set labels = labels _  $S(labels="":"",1:":") _ tSeries.Label
+		}
+		Set meter.RowLabels = labels
+	}
+	ElseIf (tRowType = "history") {
+		Set sz = $Case(tRowSize,"":5,:tRowSize)
+		Set off = 0
+		Set labels = ""
+		For i=(off+1):1:(sz+off) {
+			Set labels = labels _  $S(labels="":"",1:":") _ i
+		}
+		Set meter.RowLabels = labels
+	}
+	ElseIf (tRowType = "") {
+		Set meter.RowLabels = meter.Property
+	}
+	Else {
+		Set meter.RowLabels = "N/A"
+		Set meter.Unsupported = 1
+	}
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.Smiley">
+<Description><![CDATA[
+SVG-based Smiley Face meter for Ensemble Dashboard.<br>]]></Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Meter</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.764148</TimeCreated>
+
+<Parameter name="WIDTH">
+<Description>
+Minimum width, in logical units, of this meter.</Description>
+<Type>INTEGER</Type>
+<Default>50</Default>
+</Parameter>
+
+<Parameter name="HEIGHT">
+<Description>
+Minimum height, in logical units, of this meter.</Description>
+<Type>INTEGER</Type>
+<Default>50</Default>
+</Parameter>
+
+<Property name="Width">
+<Description>
+Override to change default</Description>
+<Type>%Integer</Type>
+<InitialExpression>100</InitialExpression>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Property name="Height">
+<Description>
+Override to change default</Description>
+<Type>%Integer</Type>
+<InitialExpression>100</InitialExpression>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Method name="OnSVGStyle">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+
+	.Smiley-face {
+		fill: url(#Smiley-faceGrad);
+		stroke: none;
+		stroke-width: 2px;
+		filter: url(#dropShadow);
+	}
+
+	.Smiley-eye {
+		fill: none;
+		stroke: green;
+		stroke-width: 2px;
+	}
+
+	.Smiley-mouth {
+		fill: none;
+		stroke: green;
+		stroke-width: 2px;
+		stroke-linecap: round;
+	}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGScript">
+<Description>
+Draw the script section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&js<
+	
+function Smiley_setProperty(property,value)
+{
+	switch (property) {
+	default:
+		return false;
+	case 'level':
+		if (value == this.level) {
+			return;
+		}
+	
+		// update level of smile
+		this.level = value;
+		var id = this.meterId;
+
+		// calculate amount of smile
+		// display range is 0 to 5, sweep for sign
+		var smile = 0;
+		var sweep = 1;
+		
+		var xeyes = false;
+		var brows = false;
+		
+		var range = this.rangeUpper - this.rangeLower;
+		if (range != 0) {
+			smile = -((((this.level - this.rangeLower) / range) * 10) - 5);
+		}
+		
+		// max smile
+		if (greaterThanEq(smile,5)) {
+			smile = 5;
+			xeyes = true;
+		}
+		if (lessThanEq(smile,-5)) {
+			smile = -5;
+			brows = true;
+		}
+
+		if (lessThanEq(smile,0)) {
+			sweep = 0;
+		}
+		
+		// work-around for IE math bugs
+		if (smile == 0) {
+			smile = 0.001;
+		}
+
+		// mouth
+		var mouth = document.getElementById(id + "_mouth");
+		mouth.setAttribute("d", "M 28 55 a 10 " + smile + " 0 1 " + sweep + " 44 0");
+		
+		// eyes
+		if (xeyes) {
+			document.getElementById(id + "_reye").setAttribute("style","display:none;");
+			document.getElementById(id + "_leye").setAttribute("style","display:none;");
+			document.getElementById(id + "_rx").setAttribute("style","");
+			document.getElementById(id + "_lx").setAttribute("style","");
+		}
+		else {
+			document.getElementById(id + "_reye").setAttribute("style","");
+			document.getElementById(id + "_leye").setAttribute("style","");
+			document.getElementById(id + "_rx").setAttribute("style","display:none;");
+			document.getElementById(id + "_lx").setAttribute("style","display:none;");
+		}
+
+		// brows
+		if (brows) {
+			document.getElementById(id + "_rbrow").setAttribute("style","");
+			document.getElementById(id + "_lbrow").setAttribute("style","");
+		}
+		else {
+			document.getElementById(id + "_rbrow").setAttribute("style","display:none;");
+			document.getElementById(id + "_lbrow").setAttribute("style","display:none;");
+		}
+		break;
+	}
+
+	return true;
+}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGDefs">
+<Description>
+Draw the defs section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+<radialGradient id="Smiley-faceGrad" cx="50" cy="45" r="35" fx="20" fy="20" gradientUnits="userSpaceOnUse" >
+<stop offset="0%" style="stop-color:yellow" />
+<stop offset="90%" style="stop-color:yellow" />
+<stop offset="100%" style="stop-color:darkyellow" />
+</radialGradient>
+
+<radialGradient id="Smiley-faceGradRed" cx="50" cy="45" r="35" fx="20" fy="20" gradientUnits="userSpaceOnUse" >
+<stop offset="0%" style="stop-color:darkred" />
+<stop offset="90%" style="stop-color:darkred" />
+<stop offset="100%" style="stop-color:black" />
+</radialGradient>
+>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGBody">
+<Description>
+Draw the body of this SVG meter</Description>
+<Implementation><![CDATA[
+	Set id = ..MeterId
+
+	&html<
+<svg width="#(..Width)#" height="#(..Height-5)#" viewBox="0 0 100 100">
+<circle class="Smiley-face" cx="50" cy="45" r="35" />
+<circle id="#(id)#_reye" class="Smiley-eye" cx="33" cy="35" r="3" />
+<circle id="#(id)#_leye" class="Smiley-eye" cx="67" cy="35" r="3" />
+
+<path id="#(id)#_rx" class="Smiley-eye" style="display:none;" d="M 31 33 L 35 37 M 31 37 L 35 33" />
+<path id="#(id)#_lx" class="Smiley-eye" style="display:none;" d="M 65 33 L 69 37 M 65 37 L 69 33" />
+
+<path id="#(id)#_rbrow" class="Smiley-eye" style="display:none;"
+		d="M 28 30 a 1 1.6 -45 1 1 10 3" 
+/>
+
+<path id="#(id)#_lbrow" class="Smiley-eye" style="display:none;"
+		d="M 72 30 a 1 1.6 45 1 0 -10 3" 
+/>
+
+<path id="#(id)#_mouth" class="Smiley-mouth" 
+		d="M 28 55 a 10 5 0 1 0 44 0" 
+/>
+</svg>
+	>
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.Spacer">
+<Description><![CDATA[
+Spacer meter for Ensemble Dashboard.<br>
+A spacer does not display any thing; it is simply
+used to take up space in the dashboard for layout purposes.]]></Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Meter</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.764148</TimeCreated>
+
+<Parameter name="SHOWLABEL">
+<Description>
+Should this meter display the standard label</Description>
+<Type>BOOLEAN</Type>
+<Default>0</Default>
+</Parameter>
+
+<Parameter name="MINWIDTH">
+<Description>
+Minimum width, in logical units, of this meter.</Description>
+<Type>INTEGER</Type>
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="MINHEIGHT">
+<Description>
+Minimum height, in logical units, of this meter.</Description>
+<Type>INTEGER</Type>
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="WIDTH">
+<Description>
+Default width, in logical units, of this meter.</Description>
+<Type>INTEGER</Type>
+<Default>25</Default>
+</Parameter>
+
+<Parameter name="HEIGHT">
+<Description>
+Default height, in logical units, of this meter.</Description>
+<Type>INTEGER</Type>
+<Default>25</Default>
+</Parameter>
+
+<Method name="OnSVGScript">
+<Description>
+Draw the script section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&js<
+	
+function Spacer_setProperty(property,value)
+{
+	return false;
+}
+	>
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.Speedometer">
+<Description>
+SVG-based Speedometer meter for Ensemble Dashboard.</Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Meter</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.78066</TimeCreated>
+
+<Property name="OdometerProperty">
+<Description>
+Optional source (property name) for the odometer displayed within the speedometer.</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="64"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Method name="OnSVGStyle">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+	.Speedometer-body {
+		fill: url(#Speedometer-bodyGrad);
+		stroke: black;
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		filter: url(#dropShadow);
+	}
+
+	.Speedometer-body2 {
+		fill: url(#Speedometer-bodyGrad);
+		stroke: black;
+		stroke-width: 0.8px;
+		stroke-linejoin: round;
+	}
+
+	.Speedometer-tickThin {
+		fill: none;
+		stroke: #202020;
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+	}
+
+	.Speedometer-tickThick {
+		fill: none;
+		stroke: black;
+		stroke-width: 2px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+	}
+
+	.Speedometer-needle {
+		fill: red;
+		stroke: black;
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+	}
+
+	.Speedometer-shadow {
+		fill: black;
+		stroke: black;
+		stroke-width: 1px;
+		opacity: 0.1;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+	}
+
+	.Speedometer-fuelLampON {
+		fill: url(#Speedometer-lampGrad);
+		stroke: #404040;
+		stroke-width: 0.4;
+	}
+
+	.Speedometer-fuelLampOFF {
+		fill: none;
+		stroke: #404040;
+		stroke-width: 0.4;
+	}
+
+	.Speedometer-levelTextBox {
+		fill: url(#Speedometer-bodyGrad2);
+		stroke: black;
+		stroke-width: 0.8;
+	}
+
+	.Speedometer-levelText {
+		pointer-events: none;
+		font-size: 8;
+		fill: black;
+		font-weight: bold;
+		stroke: none;
+		font-family: courier-new;
+	}
+	.Speedometer-levelTextNeg {
+		pointer-events: none;
+		font-size: 8;
+		fill: red;
+		font-weight: bold;
+		stroke: none;
+		font-family: courier-new;
+	}
+
+	.Speedometer-logoText {
+		pointer-events: none;
+		font-size: 5;
+		fill: gray;
+		stroke: none;
+		font-family: tahoma verdana;
+	}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGDefs">
+<Description>
+Draw the defs section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+<linearGradient id="Speedometer-bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#EEEEEE" />
+<stop offset="50%" style="stop-color:darkgray" />
+<stop offset="90%" style="stop-color:gray" />
+</linearGradient>
+
+<linearGradient id="Speedometer-bodyGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:gray" />
+<stop offset="20%" style="stop-color:darkgray" />
+<stop offset="90%" style="stop-color:#EEEEEE" />
+</linearGradient>
+
+<linearGradient id="Speedometer-lampGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:darkred" />
+<stop offset="30%" style="stop-color:#FF0000" />
+<stop offset="70%" style="stop-color:#FF0000" />
+<stop offset="100%" style="stop-color:darkred" />
+</linearGradient>
+
+>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGScript">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&js<
+	
+function Speedometer_setProperty(property,value,idx)
+{
+	switch (property) {
+	default:
+		return false;
+	case 'level':
+		var updateOdometer = false;
+		var id = this.meterId;
+		if (1 == idx) {
+			// request to set odometer property
+			if (this.propertyCount == 1) {
+				return;
+			}
+			updateOdometer = true;
+		}
+		else {
+			// regular level
+			if (value == this.level) {
+				return;
+			}
+			if (this.timerId) {
+				window.clearTimeout(this.timerId);
+				this.timerId = null;
+			}
+	
+			// update level of gauge
+			this.level = value;
+
+			if (this.propertyCount == 1) {
+				updateOdometer = true;
+			}
+		
+			// indicator lamps
+			var lowLamp = false;
+			var highLamp = false;
+			if (lessThanEq(this.level,this.thresholdLower)) {
+				lowLamp = true;
+			}
+			if (greaterThanEq(this.level,this.thresholdUpper)) {
+				highLamp = true;
+			}
+	
+			// indicator lamps
+			var lamp = document.getElementById(id + "_lowFuelLamp");
+			lamp.setAttribute("class",lowLamp ? "Speedometer-fuelLampON" : "Speedometer-fuelLampOFF");
+	
+			var lamp = document.getElementById(id + "_highFuelLamp");
+			lamp.setAttribute("class",highLamp ? "Speedometer-fuelLampON" : "Speedometer-fuelLampOFF");
+	
+			if (null == this.currLevel) {
+				this.currLevel = 0;
+			}
+	
+			// find intermediate needle position
+			var speed = (this.level*1 - this.currLevel*1) / 4;
+			this.currLevel = this.currLevel*1 + speed;
+			this.setProperty('updateLevel',0);
+		}
+
+		if (updateOdometer) {
+			// update odometer text
+			var lvl = value * this.scaleFactor;
+			var text = document.getElementById(id + "_levelText");
+			text.setAttribute("class",greaterThanEq(lvl,0) ? "Speedometer-levelText" : "Speedometer-levelTextNeg");
+	
+			if (greaterThanEq(lvl,10000000) || lessThanEq(lvl,-1000000)) {
+				lvl = "\043\043\043\043\043\043";
+			}
+			else {
+				lvl = Math.round(lvl);
+			}
+			setTextNode(id + "_levelText",lvl);
+		}
+		break;
+
+	case 'updateLevel':
+		// update internal level of meter
+		this.timerId = null;
+
+		var range = this.rangeUpper - this.rangeLower;
+
+		// round off if close enough
+		if (lessThanEq(Math.abs(this.level*1 - this.currLevel*1),(range/280))) {
+			this.currLevel = this.level*1;
+		}
+
+		var id = this.meterId;
+
+		// calculate needle angle from level
+		// display range is -140 to 140
+
+		var angle = 0;
+		if (range != 0) {
+			angle = (((this.currLevel - this.rangeLower) / range) * 280) - 140;
+		}
+
+		// pin needle against edges
+		if (greaterThanEq(angle,140)) {
+			angle = 140;
+		}
+		if (lessThanEq(angle,-140)) {
+			angle = -140;
+		}
+		
+		var needle = document.getElementById(id + "_needle");
+		needle.setAttribute("transform", "rotate(" + angle + ",50,43)");
+
+		var shadow = document.getElementById(id + "_shadow");
+		if (shadow) {
+			shadow.setAttribute("transform", "translate(3,2) rotate(" + angle + ",50,43)");
+		}
+
+		// if not done, move needle again
+		if (this.level*1 != this.currLevel*1) {
+			var speed = (this.level*1 - this.currLevel*1) / 4;
+			this.currLevel = this.currLevel*1 + speed;
+			this.timerId = window.setTimeout("Speedometer_updateNeedle('" + id + "')",50);
+		}
+		break;
+	}
+	return true;
+}
+
+function Speedometer_updateNeedle(meterId)
+{
+	if (meterList[meterId]) {
+		meterList[meterId].setProperty('updateLevel',0);
+	}
+}
+
+>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGBody">
+<Description>
+Draw the body of this SVG meter</Description>
+<Implementation><![CDATA[
+	Set id = ..MeterId
+	
+	// HCR056 centers the Speedometer based on the Width
+	Set w = +..Width Set:w<100 w = 100
+	Set move = (w\2)-50
+	&html<
+		<g transform="translate(#(move)#,0)">
+	>
+	
+	&html<
+		<path class="Speedometer-body" d="M 40,80 A 38 38 0 1 1 60 80 z" />
+		<circle id="#(id)#_lowFuelLamp" class="Speedometer-fuelLampOFF" cx="34.5" cy="72" r="1.8" />
+		<circle id="#(id)#_highFuelLamp" class="Speedometer-fuelLampOFF" cx="65.5" cy="72" r="1.8" />
+	>
+
+	// ticks
+	For a = -140:14:140 {
+		Set style = $S($G(style)="Thick":"Thin",1:"Thick")
+		&html<<line class="Speedometer-tick#(style)#" x1="50" y1="12" x2="50" y2="9" transform="rotate(#(a)#,50,43)"/>>
+	}
+	
+	// logo
+	&html<<text class="Speedometer-logoText" x="50" y="33" text-anchor="middle">Ensemble</text>>
+
+	&html<
+		<rect class="Speedometer-levelTextBox" x="32" y="55" width="35" height="8" rx="1" />
+		<text id="#(id)#_levelText" class="Speedometer-levelText" x="67" y="62" text-anchor="end">#(..Level)#</text>
+	>
+	// odometer lines
+	Set x = 62.4
+	For n = 1:1:6 {
+		&html<<line style="stroke:gray; stroke-width:0.1;" x1="#(x)#" y1="55.5" x2="#(x)#" y2="62.5" />>
+		Set x = x - 4.9
+	}
+	&html<
+		<path id="#(id)#_shadow" class="Speedometer-shadow" d="M 50,12 L 53,55 50,53 47,55 z" transform="rotate(1,50,43)" />
+		<path id="#(id)#_needle" class="Speedometer-needle" d="M 50,12 L 53,55 50,53 47,55 z" transform="rotate(0,50,43)" />
+		<path class="Speedometer-body2" d="M 47,51 A 8 8 0 1 1 53 51 z" />
+	>
+	
+	&html<
+		</g>
+	>
+]]></Implementation>
+</Method>
+
+<Method name="GenerateCode">
+<Description><![CDATA[
+Called by Dashboard class to generate code to
+create an instance of this object.
+The object instance is called <var>tMeter</var>.]]></Description>
+<FormalSpec>pCode:%CharacterStream,pLevel:%Integer=1</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	Do ##super(pCode)
+	If (..OdometerProperty'="") {
+		Do pCode.WriteLine(" Set tMeter.OdometerProperty=""" _ ..OdometerProperty _ """")
+		Do pCode.WriteLine(" Set tMeter.PropertyCount=2")
+	}
+	Quit $$$OK
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.TickerTape">
+<Description><![CDATA[
+SVG-based TickerTape meter for Ensemble Dashboard.<br>
+The TickerTape displays recent values of metric property
+as pieces of text sliding across a ticker tape display. Individual
+elements are colored differently in order to visually differentiate them.
+Repeating values are not displayed. There is no guarantee that
+any specific element will be displayed; that is function of when the
+metric property is updated and when the dashboard refreshes itself.]]></Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Meter</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.78066</TimeCreated>
+
+<Parameter name="MINWIDTH">
+<Description>
+Minimum width, in logical units, of this meter.</Description>
+<Type>INTEGER</Type>
+<Default>10</Default>
+</Parameter>
+
+<Parameter name="MINHEIGHT">
+<Description>
+Minimum height, in logical units, of this meter.</Description>
+<Type>INTEGER</Type>
+<Default>25</Default>
+</Parameter>
+
+<Property name="TextStyle">
+<Description>
+CSS Style applied to ticker text. E.g. "fill: blue;"</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="100"/>
+<Parameter name="XMLPROJECTION" value="ATTRIBUTE"/>
+</Property>
+
+<Method name="OnSVGStyle">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+
+	.TickerTape-rect {
+		stroke-width: 1px;
+		stroke: gray;
+		fill: black;
+	}
+
+	.TickerTape-Text {
+		pointer-events: none;
+		font-size: 8;
+		stroke: none;
+		font-family: tahoma;
+	}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGScript">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&js<
+	
+function TickerTape_setProperty(property,value,idx)
+{
+	switch (property) {
+	default:
+		return false;
+	case 'level':
+		if (this.level == value || value == 0 || value == '') {
+			return;
+		}
+		// stop timer
+		if (null != this.timerId) {
+			window.clearTimeout(this.timerId);
+		}
+		this.timerId = null;
+		this.level = value;
+		var colorArray = new Array("white","orange","yellow");            
+		var numColors = colorArray.length;
+
+		// create text node
+		if (!this.textNodes) {
+			this.textNodes = new Array();
+			this.counter = 0; // used to calculate colors
+		}
+		var group = document.getElementById(this.meterId + "_TextGroup");
+
+		var text = document.createElement("text");
+		text.setAttribute("class","TickerTape-Text");
+		text.setAttribute("style","fill: " + colorArray[this.counter++ % numColors] + ";" + this.textStyle);
+		text.setAttribute("y", this.height - 17);
+		
+		// place text after last element
+		var x;
+		if (this.textNodes.length == 0) {
+			x = this.width;
+		}
+		else {
+			var last = this.textNodes[this.textNodes.length-1];
+			x = last.getAttribute("x")*1 + last.getComputedTextLength()*1 + 5;
+			x = lessThanEq(x,this.width) ? this.width : x;
+		}
+		text.setAttribute("x", x);
+
+		// create the text node and append it
+		var textNode = document.createTextNode(value);
+		text.appendChild(textNode);
+		this.textNodes[this.textNodes.length] = text;
+		group.appendChild(text);
+
+		// restart ticker timer
+		this.timerId = window.setTimeout("TickerTape_timerHandler('" + this.meterId + "')",100);
+		break;
+	}
+	return true;
+}
+
+function TickerTape_timerHandler(meterId)
+{
+	if (meterList[meterId]) {
+		var meter = meterList[meterId];
+		meter.timerId = null;
+		var group = document.getElementById(meter.meterId + "_TextGroup");
+
+		if (meter.textNodes) {
+			var speed = meter.textNodes.length * 0.5;
+			speed = lessThanEq(speed,1) ? 1 : speed;
+			for (var n=0; lessThanEq(n,meter.textNodes.length-1); n++) {
+				var txt = meter.textNodes[n];
+				if (txt) {
+					txt.setAttribute("x",txt.getAttribute("x") - speed);
+					if (lessThanEq(txt.getAttribute("x"),txt.getComputedTextLength()*-1)) {
+						// remove node
+						group.removeChild(txt);
+						meter.textNodes.splice(n,1);
+					}
+				}
+			}
+			
+			if (0 == meter.textNodes.length) {
+				// for constant values, force repeat
+				meter.level = null;
+			}
+		}
+	
+		// reset timer
+		meter.timerId = window.setTimeout("TickerTape_timerHandler('" + meterId + "')",100);
+	}
+}
+
+>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGBody">
+<Description>
+Draw the body of this SVG meter</Description>
+<Implementation><![CDATA[
+	Set id = ..MeterId
+	Set x = 5
+	Set y = 0
+
+	&html<
+		<rect id="#(id)#_outerRect" class="TickerTape-rect" rx="2" x="#(x)#" y="#(y)#" width="#(..Width-10)#" height="#(..Height-13)#"/>
+		<svg x="#(x)#" y="#(y)#" width="#(..Width-10)#" height="#(..Height-13)#">
+			<g id="#(id)#_TextGroup" />
+		</svg>
+	>
+]]></Implementation>
+</Method>
+
+<Method name="GenerateCode">
+<Description><![CDATA[
+Called by Dashboard class to generate code to
+create an instance of this object.
+The object instance is called <var>tMeter</var>.]]></Description>
+<FormalSpec>pCode:%CharacterStream,pLevel:%Integer=1</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	Do ##super(pCode)
+	If (..TextStyle'="") {
+		Do pCode.WriteLine(" Set tMeter.TextStyle=""" _ ..TextStyle _ """")
+	}
+	Quit $$$OK
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="CSPX.Dashboard.TrafficLight">
+<Description><![CDATA[
+SVG-based Traffic Light meter for Ensemble Dashboard.<br>
+Light logic depends on the relative values of <var>RangeLower</var> and 
+<var>RangeUpper</var> and works as follows:<br>
+If <var>RangeLower</var> is less than (or equal to) <var>RangeUpper</var>, then 
+the light is green when the level is less than (or equal to) <var>ThresholdLower</var> and 
+the light is red when the level is greater than (or equal to) <var>ThresholdUpper</var> otherwise
+the light is yellow.<br>
+If <var>RangeLower</var> is greater then <var>RangeUpper</var>, then 
+the light is red when the level is less than (or equal to) <var>ThresholdLower</var> and 
+the light is green when the level is greater than (or equal to) <var>ThresholdUpper</var> otherwise
+the light is yellow.<br>]]></Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Meter</Super>
+<System>3</System>
+<TimeChanged>65190,55399</TimeChanged>
+<TimeCreated>59508,73013.78986</TimeCreated>
+
+<Parameter name="MINWIDTH">
+<Default>50</Default>
+</Parameter>
+
+<Parameter name="WIDTH">
+<Default>50</Default>
+</Parameter>
+
+<Method name="OnSVGStyle">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+	.TrafficLight-body {
+		fill: url(#TrafficLight-bodyGrad);
+		stroke: black;
+		stroke-width: 1px;
+		filter: url(#dropShadow);
+	}
+
+	.TrafficLight-redLampON {
+		fill: url(#TrafficLight-redGrad);
+		stroke: black;
+		stroke-width: 1px;
+	}
+	.TrafficLight-redLampOFF {
+		fill: #200000;
+		stroke: black;
+		stroke-width: 1px;
+	}
+	.TrafficLight-yellowLampON {
+		fill: url(#TrafficLight-yellowGrad);
+		stroke: black;
+		stroke-width: 1px;
+	}
+	.TrafficLight-yellowLampOFF {
+		fill: #202000;
+		stroke: black;
+		stroke-width: 1px;
+	}
+	.TrafficLight-greenLampON {
+		fill: url(#TrafficLight-greenGrad);
+		stroke: black;
+		stroke-width: 1px;
+	}
+	.TrafficLight-greenLampOFF {
+		fill: #002000;
+		stroke: black;
+		stroke-width: 1px;
+	}
+	
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGScript">
+<Description>
+Draw the script section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&js<
+	
+function TrafficLight_setProperty(property,value)
+{
+	switch (property) {
+	default:
+		return false;
+	case 'level':
+		if (value == this.level) {
+			return;
+		}
+	
+		// update level of gauge
+		this.level = value;
+		var id = this.meterId;
+		
+		// calculate which lamps should be on
+		var redState = false;
+		var greenState = false;
+		var yellowState = false;
+
+		// thresholds depend on direction of range...
+		if (greaterThanEq(this.rangeUpper,this.rangeLower)) {
+			// normal range direction
+			if (lessThanEq(this.level,this.thresholdLower)) {
+				greenState = true;
+			}
+			else if (greaterThanEq(this.level,this.thresholdUpper)) {
+				redState = true;
+			}
+			else {
+				yellowState = true;
+			}
+		}
+		else {
+			if (lessThanEq(this.level,this.thresholdLower)) {
+				redState = true;
+			}
+			else if (greaterThanEq(this.level,this.thresholdUpper)) {
+				greenState = true;
+			}
+			else {
+				yellowState = true;
+			}
+		}
+
+		// update lamps
+		var redLamp = document.getElementById(id + "_redLamp");
+		var greenLamp = document.getElementById(id + "_greenLamp");
+		var yellowLamp = document.getElementById(id + "_yellowLamp");
+		
+		redLamp.setAttribute("class",redState ? "TrafficLight-redLampON" : "TrafficLight-redLampOFF");
+		greenLamp.setAttribute("class",greenState ? "TrafficLight-greenLampON" : "TrafficLight-greenLampOFF");
+		yellowLamp.setAttribute("class",yellowState ? "TrafficLight-yellowLampON" : "TrafficLight-yellowLampOFF");
+		break;
+	}
+
+	return true;
+}
+	>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGDefs">
+<Description>
+Draw the defs section of this SVG meter</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	&html<
+<linearGradient id="TrafficLight-bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="50%" style="stop-color:darkgray" />
+<stop offset="90%" style="stop-color:gray" />
+</linearGradient>
+
+<linearGradient id="TrafficLight-redGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:darkred" />
+<stop offset="30%" style="stop-color:#FF0000" />
+<stop offset="70%" style="stop-color:#FF0000" />
+<stop offset="100%" style="stop-color:darkred" />
+</linearGradient>
+
+<linearGradient id="TrafficLight-yellowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#808000" />
+<stop offset="30%" style="stop-color:#FFFF00" />
+<stop offset="70%" style="stop-color:#FFFF00" />
+<stop offset="100%" style="stop-color:#808000" />
+</linearGradient>
+
+<linearGradient id="TrafficLight-greenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:darkgreen" />
+<stop offset="60%" style="stop-color:#00FF00" />
+<stop offset="100%" style="stop-color:darkgreen" />
+</linearGradient>
+>
+]]></Implementation>
+</Method>
+
+<Method name="OnSVGBody">
+<Description>
+Draw the body of this SVG meter</Description>
+<Implementation><![CDATA[
+	Set id = ..MeterId
+
+	&html<
+		<rect class="TrafficLight-body" x="#((..Width/2)-15)#" y="8" width="30" height="74" rx="5" />
+		<circle id="#(id)#_redLamp" class="TrafficLight-redLampOFF" cx="#(..Width/2)#" cy="22" r="10" />
+		<circle id="#(id)#_yellowLamp" class="TrafficLight-yellowLampOFF" cx="#(..Width/2)#" cy="45" r="10" />
+		<circle id="#(id)#_greenLamp" class="TrafficLight-greenLampOFF" cx="#(..Width/2)#" cy="68" r="10" />
+	>
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="Cadwell.Cadwell2CernerORU">
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>66757,37394.535002</TimeChanged>
+<TimeCreated>66689,47378.238117</TimeCreated>
+<DependsOn>EnsLib.HL7.Message</DependsOn>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="TREATEMPTYREPEATINGFIELDASNULL">
+<Default>0</Default>
+</Parameter>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='EnsLib.HL7.Message' targetClass='EnsLib.HL7.Message' sourceDocType='231.Cerner:ORU_R01' targetDocType='231.Cerner:ORU_R01' create='copy' language='objectscript' >
+<assign value='"IOMPHYSICIANREPORT"' property='PHYSREPORT' action='set' />
+<assign value='0' property='doesOrderNumberExist' action='set' />
+<assign value='source.{ORCgrp(1).OBR:UniversalServiceID.identifier}' property='ReportType' action='set' />
+
+<if condition='(ReportType=PHYSREPORT)' >
+<true>
+<assign value='source.{ORCgrp(1).OBR:PlacerOrderNumber.entityidentifier}' property='HL7OrderNumber' action='set' />
+<assign value='##class(Cadwell.OrderNumberhold).Find(HL7OrderNumber)' property='doesOrderNumberExist' action='set' />
+<if condition='doesOrderNumberExist' >
+<false>
+<assign value='"F"' property='target.{ORCgrp(1).OBR:ResultStatus}' action='set' />
+<assign value='##class(Cadwell.OrderNumberhold).Insert(HL7OrderNumber)' property='tSC' action='set' />
+</false>
+</if>
+</true>
+</if>
+</transform>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="Cadwell.CadwellBoRule">
+<Description>
+</Description>
+<Super>Ens.Rule.Definition</Super>
+<TimeChanged>66689,49497.578806</TimeChanged>
+<TimeCreated>66689,48384.224189</TimeCreated>
+
+<Parameter name="RuleAssistClass">
+<Default>EnsLib.HL7.MsgRouter.RuleAssist</Default>
+</Parameter>
+
+<XData name="RuleDefinition">
+<XMLNamespace>http://www.intersystems.com/rule</XMLNamespace>
+<Data><![CDATA[
+<ruleDefinition alias="" context="EnsLib.HL7.MsgRouter.RoutingEngine" production="PROD.PROD">
+<ruleSet name="" effectiveBegin="" effectiveEnd="">
+<rule name="block specific order status - from PROD go live 9/10/2020" disabled="false">
+<constraint name="docCategory" value="231.Cerner"></constraint>
+<constraint name="docName" value="ORM_O01"></constraint>
+<when condition="HL7.{ORCgrp(1).ORC:1}=&quot;SC&quot;||HL7.{ORCgrp(1).ORC:1}=&quot;CM&quot;">
+<return></return>
+</when>
+</rule>
+<rule name="" disabled="false">
+<constraint name="docCategory" value="231.Cerner"></constraint>
+<constraint name="docName" value="ORM_O01"></constraint>
+<when condition="1">
+<send transform="" target="HL7.O.CadwellOrm"></send>
+<return></return>
+</when>
+</rule>
+<rule name="report only" disabled="false">
+<constraint name="docCategory" value="231.Cerner"></constraint>
+<constraint name="docName" value="ORU_R01"></constraint>
+<when condition="1">
+<send transform="Cadwell.Cadwell2CernerORU" target="HL7.O.CrCadwellOru"></send>
+<return></return>
+</when>
+</rule>
+</ruleSet>
+</ruleDefinition>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="Cadwell.CadwellBsRule">
+<Description>
+</Description>
+<Super>Ens.Rule.Definition</Super>
+<TimeChanged>66764,40258.361878</TimeChanged>
+<TimeCreated>66689,47724.592689</TimeCreated>
+
+<Parameter name="RuleAssistClass">
+<Default>EnsLib.HL7.MsgRouter.RuleAssist</Default>
+</Parameter>
+
+<XData name="RuleDefinition">
+<XMLNamespace>http://www.intersystems.com/rule</XMLNamespace>
+<Data><![CDATA[
+<ruleDefinition alias="" context="EnsLib.HL7.MsgRouter.RoutingEngine" production="PROD.PROD">
+<ruleSet name="" effectiveBegin="" effectiveEnd="">
+<rule name="Archive" disabled="false">
+<when condition="1">
+<send transform="" target="File.O.ArchiveInbound"></send>
+</when>
+</rule>
+<rule name="Block Test Patients" disabled="true">
+<constraint name="docCategory" value="231.Cerner"></constraint>
+<when condition="Exists(&quot;T_CernerProd_TestPatients&quot;,HL7.{PID:PatientIdentifierList(1).ID})">
+<send transform="" target="File.O.ArchiveStopped"></send>
+<return></return>
+</when>
+</rule>
+<rule name="" disabled="false">
+<constraint name="docCategory" value="231.Cerner"></constraint>
+<constraint name="docName" value="ORM_O01,ORU_R01"></constraint>
+<when condition="1">
+<send transform="" target="Cadwell.CadwellBoRule"></send>
+<return></return>
+</when>
+</rule>
+</ruleSet>
+</ruleDefinition>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="Cadwell.OrderNumberhold">
+<Description>
+Cadwell ORU- Store Order_id to check for OBR;25</Description>
+<Super>%Persistent</Super>
+<TimeChanged>66689,47282.919352</TimeChanged>
+<TimeCreated>66689,47282.919352</TimeCreated>
+
+<Index name="OrderNumberIDX">
+<IdKey>1</IdKey>
+<Properties>OrderNumber</Properties>
+</Index>
+
+<Property name="OrderNumber">
+<Type>%String</Type>
+</Property>
+
+<Method name="Find">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>pOrderNumber:%String</FormalSpec>
+<ReturnType>%Boolean</ReturnType>
+<Implementation><![CDATA[	q $ISOBJECT( ..%OpenId(pOrderNumber) )
+]]></Implementation>
+</Method>
+
+<Method name="Insert">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>pOrderNumber:%String</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+    #dim tSC As %Status = $$$OK
+    s newOrder = ##class(Cadwell.OrderNumberhold).%New()
+    s newOrder.OrderNumber = pOrderNumber
+    s tSC = newOrder.%Save()
+    q tSC
+]]></Implementation>
+</Method>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DataLocation>^Cadwell.OrderNumberholdD</DataLocation>
+<DefaultData>OrderNumberDefaultData</DefaultData>
+<IdLocation>^Cadwell.OrderNumberholdD</IdLocation>
+<IndexLocation>^Cadwell.OrderNumberholdI</IndexLocation>
+<StreamLocation>^Cadwell.OrderNumberholdS</StreamLocation>
+<Data name="OrderNumberDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>OrderNumber</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="EDW.CernerAdtSqlParameters">
+<Super>Ens.Request</Super>
+<TimeChanged>63903,40915.592984</TimeChanged>
+<TimeCreated>63001,39831.343746</TimeCreated>
+
+<UDLText name="T">
+<Content><![CDATA[
+// --------------------------------------------------------------
+
+]]></Content>
+</UDLText>
+
+<UDLText name="T">
+<Content><![CDATA[
+// Create By: Ellen Leichtman on 10/29/2014
+
+]]></Content>
+</UDLText>
+
+<UDLText name="T">
+<Content><![CDATA[
+//  Last Updated DEV 10/29/2014
+
+]]></Content>
+</UDLText>
+
+<UDLText name="T">
+<Content><![CDATA[
+//  Last Updated PROD : 10/30/2014
+
+]]></Content>
+</UDLText>
+
+<UDLText name="T">
+<Content><![CDATA[
+//  Modified BY: None
+
+]]></Content>
+</UDLText>
+
+<UDLText name="T">
+<Content><![CDATA[
+//  Modified Date: None
+
+]]></Content>
+</UDLText>
+
+<UDLText name="T">
+<Content><![CDATA[
+//  ModifiedDesc: None
+
+]]></Content>
+</UDLText>
+
+<Property name="Mrun">
+<Description>
+Last Updated in Prod - never
+Description: Send ADT to EDW used with Patient Surveys   
+PROD:  gcshspdbpr01\edwprod
+DEV SQL  server: GCSHSPDBTE01\EDWDev
+Database:[EDW]
+Stored:  proc will be called ODS_POC.[HL7].[EDW_O_QcrpADT] 
+Table: [edw].[DimLivePatient]
+</Description>
+<Type>%String</Type>
+<Parameter name="EXTERNALSQLTYPE" value="12"/>
+<Parameter name="MAXLEN" value="50"/>
+</Property>
+
+<Property name="PatientFirstName">
+<Type>%String</Type>
+<Parameter name="EXTERNALSQLTYPE" value="12"/>
+<Parameter name="MAXLEN" value="50"/>
+</Property>
+
+<Property name="PatientLastName">
+<Type>%String</Type>
+<Parameter name="EXTERNALSQLTYPE" value="12"/>
+<Parameter name="MAXLEN" value="50"/>
+</Property>
+
+<Property name="PatientMiddleName">
+<Type>%String</Type>
+<Parameter name="EXTERNALSQLTYPE" value="12"/>
+<Parameter name="MAXLEN" value="50"/>
+</Property>
+
+<Property name="Dob">
+<Type>%String</Type>
+<Parameter name="EXTERNALSQLTYPE" value="12"/>
+<Parameter name="MAXLEN" value="20"/>
+</Property>
+
+<Property name="Sex">
+<Type>%String</Type>
+<Parameter name="EXTERNALSQLTYPE" value="12"/>
+<Parameter name="MAXLEN" value="1"/>
+</Property>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DefaultData>CernerAdtSqlParametersDefaultData</DefaultData>
+<Data name="CernerAdtSqlParametersDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"CernerAdtSqlParameters"</Subscript>
+<Value name="1">
+<Value>Mrun</Value>
+</Value>
+<Value name="2">
+<Value>PatientFirstName</Value>
+</Value>
+<Value name="3">
+<Value>PatientLastName</Value>
+</Value>
+<Value name="4">
+<Value>PatientMiddleName</Value>
+</Value>
+<Value name="5">
+<Value>Dob</Value>
+</Value>
+<Value name="6">
+<Value>Sex</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="EDW.dtl.Cerner2EdwADT">
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>64042,55056.884116</TimeChanged>
+<TimeCreated>61597,59720.639499</TimeCreated>
+<DependsOn>EnsLib.HL7.Message,EDW.CernerAdtSqlParameters</DependsOn>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='EnsLib.HL7.Message' targetClass='EDW.CernerAdtSqlParameters' sourceDocType='231.Cerner:ADT_A01' create='new' language='objectscript' >
+<code>
+<![CDATA[ 
+ 	//  Author: Ellen
+ 	//  Create date: 09/03/20143
+ 	//  In PROD: not yet
+ 	//  Description: ADT data from QCPR to EDW for PROM survey.Nightly refresh from Affinity.
+ 	//  A01,A03( discharge),A04,A08,A11,A13,A28,A31 not all use A01 base but the fields I need work. 
+ 	//  Do not need to send A13 cancel Discharge 
+ 	//  Properites :Length must match exactly with SQL Proc or will not work.
+ 	//  Modified: na 
+]]]]><![CDATA[></code>
+<assign value='source.{PID:PatientIdentifierList().ID}' property='target.Mrun' action='set' />
+<assign value='source.{PID:PatientName().givenname}' property='target.PatientFirstName' action='set' />
+<assign value='source.{PID:PatientName().familylastname}' property='target.PatientLastName' action='set' />
+<assign value='source.{PID:PatientName().middleinitialorname}' property='target.PatientMiddleName' action='set' />
+<assign value='source.{PID:Sex}' property='target.Sex' action='set' />
+<if condition='source.{PID:DateTimeofBirth.timeofanevent} = "" ' >
+<false>
+<assign value='..SubString(source.{PID:DateTimeofBirth.timeofanevent},5,6)_"/"_..SubString(source.{PID:DateTimeofBirth.timeofanevent},7,8)_"/"_..SubString(source.{PID:DateTimeofBirth.timeofanevent},1,4)' property='target.Dob' action='set' />
+</false>
+</if>
+
+</transform>
+]]></Data>
+</XData>
+</Class>
+</Export>
+ 

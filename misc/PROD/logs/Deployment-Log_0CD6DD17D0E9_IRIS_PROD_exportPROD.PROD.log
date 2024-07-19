@@ -1,0 +1,5 @@
+2024-07-17 22:52:01.118: Writing to Log File /opt/irisapp/misc/PROD/logs/Deployment-Log_0CD6DD17D0E9_IRIS_PROD_exportPROD.PROD.log
+2024-07-17 22:52:01.590: Reading Deployment File /opt/irisapp/misc/exportPROD.PROD.txt
+2024-07-17 22:52:02.034: Getting Document EnsExportNotes
+2024-07-17 22:52:02.568: Not a deployment file. Missing EnsExportNotes.
+2024-07-17 22:52:02.950: Failed to complete deployment of /opt/irisapp/misc/exportPROD.PROD.txt

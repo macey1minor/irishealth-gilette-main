@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "localhost:PROD",
+			"uri": "isfs://localhost:prod/"
+		}
+	],
+	"settings": {}
+}

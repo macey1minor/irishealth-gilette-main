@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+  <Document name="iris-payer-service.ZPM">
+    <Module>
+      <Name>iris-payer-service</Name>
+      <Version>1.0.3</Version>
+      <Packaging>module</Packaging>
+      <SourcesRoot>src</SourcesRoot>
+      <Resource Name="Service.PKG"/>
+      <Resource Name="XF.PKG"/>
+      <Resource Name="HSROUTERPKG.PKG"/>
+      <Resource Name="PRODPKG.PKG"/>
+      <Resource Name="Avaya.PKG"/>
+      <Resource Name="Cadwell.PKG"/>
+      <Resource Name="EDW.PKG"/>
+      <Resource Name="GC.PKG"/>
+      <Resource Name="IIBAENSEMBLE.PKG"/>
+      <Resource Name="P.PKG"/>
+    
+      <Invoke Class="Ens.Director" Method="SetAutoStart">
+        <Arg>HSROUTERPKG.FoundationProduction</Arg>
+      </Invoke>
+      <Invoke Class="Ens.Director" Method="SetAutoStart">
+        <Arg>PRODPKG.FoundationProduction</Arg>
+      </Invoke>
+    </Module>
+  </Document>
+</Export>
